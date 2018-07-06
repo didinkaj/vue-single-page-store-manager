@@ -1,9 +1,9 @@
 <script>
-    import Index from '@/components/index'
+    import Products from '@/components/Products'
     export default {
         name: 'App',
         components: {
-            'home-page': Index
+            'home-page': Products
         },
         data() {
             return {

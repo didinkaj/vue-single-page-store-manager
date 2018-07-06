@@ -1,62 +1,67 @@
-<template>
-    <el-container>
-        <el-header>Header</el-header>
-        <el-container>
-            <el-aside width="200px">Aside</el-aside>
-            <el-container>
-                <el-main>Main</el-main>
-                <el-footer>Footer</el-footer>
-            </el-container>
-        </el-container>
-    </el-container>
+<script>
+    import SideBar from '@/components/layouts/Page-SideBar'
+    import HeaderNav from '@/components/layouts/Page-Header'
 
+    export default {
+        components: {
+            'side-bar': SideBar,
+            'head-nav': HeaderNav,
+        },
+        data() {
+            return {}
+        }
+    };
+</script>
+<template>
+    <el-container class="maincontainer">
+
+        <side-bar></side-bar>
+
+        <el-container>
+
+            <el-header class="mainheader">
+                <head-nav></head-nav>
+            </el-header>
+
+            <el-main>
+                    <slot name="content"></slot>
+            </el-main>
+
+        </el-container>
+
+    </el-container>
 </template>
 
-<script>
-    export default {
-
-
-    }
-</script>
 <style>
-    .el-header, .el-footer {
-        background-color: #B3C0D1;
+    body {
+        background: #ffffff;
+        padding: 0px;
+        margin: 0px;
+        font-family: Helvetica;
+    }
+
+    .el-header {
+        background-color: #ffffff;
         color: #333;
-        text-align: center;
         line-height: 60px;
     }
 
     .el-aside {
-        background-color: #D3DCE6;
         color: #333;
-        text-align: center;
-        line-height: 800px;
-
+        line-height: 100%;
     }
 
-    .el-main {
-        background-color: #E9EEF3;
-        color: #333;
-        text-align: center;
-        line-height: 160px;
+    .maincontainer {
+        height: 740px;
+
+        border: 1px solid #eee
     }
 
-    body > .el-container {
-        margin: 0px;
-        padding: 0px;
-    }
-    body{
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .el-container:nth-child(5) .el-aside,
-    .el-container:nth-child(6) .el-aside {
-        line-height: 260px;
-    }
-
-    .el-container:nth-child(7) .el-aside {
-        line-height: 320px;
+    .mainheader {
+        text-align: right;
+        font-size: 12px
     }
 </style>
+
+
 
