@@ -15,16 +15,18 @@
 <template>
     <page-layout >
         <el-row slot="content">
-            <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 1 : 0">
+            <el-col :span="6" v-for="(o, index) in 3" :key="o" :offset="index > 0 ? 1 : 0">
                 <el-card :body-style="{ padding: '0px' }">
-                    <img src="../assets/laptop.jpg">
+                    <img class="img-product" src="../assets/laptop.jpg">
                     <div style="padding: 14px;">
                         <span>Laptops: $ 300</span>
                         <div class="bottom clearfix">
-                            <time class="time">{{ currentDate }}</time>
-                            <el-button type="primary pull-right">Order</el-button>
+                            <time class="time">HP EliteBook Folio 1020 G1 - 12.5" - Core m5 6th gen - 8 GB RAM - 256 GB SSD -silver-free dos-free laptop bag</time>
+
                         </div>
                     </div>
+
+                <el-button type="primary pull-right">Order</el-button>
                 </el-card>
             </el-col>
         </el-row>
@@ -47,9 +49,11 @@
         float: right;
     }
 
-    .image {
-        width: 100%;
+    .img-product {
+        width:120px;
         display: block;
+        margin: 0px auto;
+        padding: 15px 0px 0px 0px;
     }
 
     .clearfix:before,

@@ -2,7 +2,7 @@
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
         <el-row class="tac">
             <el-col :span="24">
-                <h5 class="logo">App Store</h5>
+                <h5 class="logo">Store App</h5>
                 <el-menu
                         default-active="2"
                         class="el-menu-vertical-demo"
@@ -18,7 +18,7 @@
                         <span>Products</span>
                     </el-menu-item>
                     <el-menu-item index="3">
-                        <i class="el-icon-setting"></i>
+                        <i class="el-icon-goods"></i>
                         <span>Cart</span>
                     </el-menu-item>
                     <el-menu-item index="4">
@@ -53,6 +53,6 @@
 
 <style>
 .logo{
-    padding-left: 5px;
+    padding-left: 25px;
 }
 </style>
