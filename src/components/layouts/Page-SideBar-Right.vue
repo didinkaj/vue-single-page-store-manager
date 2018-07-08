@@ -2,9 +2,9 @@
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
         <el-row class="tac">
             <el-col :span="24">
-                <h5 class="logo">Store App</h5>
+                <h5 class="logo">Account</h5>
                 <el-menu
-                        default-active="2"
+                        default-active="1"
                         class="el-menu-vertical-demo"
                         @open="handleOpen"
                         @close="handleClose">
@@ -15,10 +15,10 @@
                     </el-menu-item>
                     <el-menu-item index="2">
                         <i class="el-icon-document"></i>
-                        <span>Products</span>
+                        <span>My Products</span>
                     </el-menu-item>
                     <el-menu-item index="3">
-                        <i class="el-icon-goods"></i>
+                        <i class="el-icon-sold-out"></i>
                         <span>Cart</span>
                     </el-menu-item>
                     <el-menu-item index="4">
@@ -34,7 +34,7 @@
 
 <script>
     export default {
-        name:'sidebar',
+        name:'sidebar-right',
         data() {
             return {
                 isCollapse: true
@@ -54,5 +54,6 @@
 <style>
 .logo{
     padding-left: 25px;
+    color: brown;
 }
 </style>

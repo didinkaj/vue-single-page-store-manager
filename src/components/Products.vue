@@ -1,9 +1,10 @@
 <script>
     import Layout from '@/components/index'
+
     export default {
-        name:'products',
-        components:{
-           'page-layout': Layout
+        name: 'products',
+        components: {
+            'page-layout': Layout
         },
         data() {
             return {
@@ -13,20 +14,22 @@
     }
 </script>
 <template>
-    <page-layout >
+    <page-layout>
         <el-row slot="content">
-            <el-col :span="6" v-for="(o, index) in 3" :key="o" :offset="index > 0 ? 1 : 0">
+            <el-col :span="7" v-for="(o, index) in 6" :key="o" :offset="index > 0 ? 1 : 1" class="product">
                 <el-card :body-style="{ padding: '0px' }">
                     <img class="img-product" src="../assets/laptop.jpg">
                     <div style="padding: 14px;">
                         <span>Laptops: $ 300</span>
                         <div class="bottom clearfix">
-                            <time class="time">HP EliteBook Folio 1020 G1 - 12.5" - Core m5 6th gen - 8 GB RAM - 256 GB SSD -silver-free dos-free laptop bag</time>
+                            <time class="time">
+                                HP EliteBook Folio 1020 G1 - 12.5" - Core m5 6th gen - 8 GB RAM - 256 GB SSD -silver-free dos-free laptop bag
+                            </time>
 
                         </div>
                     </div>
 
-                <el-button type="primary pull-right">Order</el-button>
+                    <el-button type="primary pull-right" icon="el-icon-sold-out"> Order</el-button>
                 </el-card>
             </el-col>
         </el-row>
@@ -50,23 +53,20 @@
     }
 
     .img-product {
-        width:120px;
+        width: 120px;
         display: block;
         margin: 0px auto;
         padding: 15px 0px 0px 0px;
     }
 
-    .clearfix:before,
-    .clearfix:after {
-        display: table;
-        content: "";
+    .product {
+        margin: 10px;
+        margin-bottom: 10px;
     }
 
-    .clearfix:after {
-        clear: both
-    }
-    .pull-right{
+    .pull-right {
         float: right;
+        margin: 5px;
     }
 </style>
 
