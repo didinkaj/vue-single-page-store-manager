@@ -2,7 +2,7 @@
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
         <el-row class="tac">
             <el-col :span="24">
-                <h5 class="logo">Products</h5>
+                <h5 class="logo">Products Categories</h5>
                 <el-menu
                         default-active="1"
                         class="el-menu-vertical-demo"
@@ -37,7 +37,7 @@
 
 <script>
     export default {
-        name:'sidebar-left',
+        name: 'sidebar-left',
         data() {
             return {
                 isCollapse: true
@@ -55,8 +55,16 @@
 </script>
 
 <style>
-.logo{
-    padding-left: 25px;
-    color: brown;
-}
+    .logo {
+        padding-left: 25px;
+        color: #931621;
+    }
+
+    .el-aside {
+        color: #333;
+        background-color: #123456;
+        line-height: 100%;
+        position: fixed;
+        z-index: 900;
+    }
 </style>

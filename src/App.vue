@@ -1,5 +1,5 @@
 <script>
-    import Products from '@/components/Products'
+    import Products from '@/components/products/Products-List'
     export default {
         name: 'App',
         components: {

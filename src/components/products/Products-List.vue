@@ -1,6 +1,6 @@
 <script>
     import Layout from '@/components/index'
-
+    import {mapState,mapGetters} from 'vuex'
     export default {
         name: 'products',
         components: {
@@ -10,34 +10,42 @@
             return {
                 currentDate: new Date()
             };
+        },
+        computed:{
+            ...mapState({
+                names: 'names'
+            }),
+            ...mapGetters({
+                products:'products'
+            })
         }
     }
 </script>
 <template>
     <page-layout>
         <el-row slot="content">
-            <el-col :span="7" v-for="(o, index) in 6" :key="o" :offset="index > 0 ? 1 : 1" class="product">
+            <el-col :span="7" v-for="product in products" :key="product.id" :offset="product > 0 ? 1 : 1" class="product">
                 <el-card :body-style="{ padding: '0px' }">
-                    <img class="img-product" src="../assets/laptop.jpg">
-                    <div style="padding: 14px;">
-                        <span>Laptops: $ 300</span>
+                    <img class="img-product" :src="product.img">
+                    <div class="product-desc" style="padding: 14px;">
+                        <span >{{product.name}} : <span class="product-price">$ {{product.price}}</span></span>
                         <div class="bottom clearfix">
-                            <time class="time">
-                                HP EliteBook Folio 1020 G1 - 12.5" - Core m5 6th gen - 8 GB RAM - 256 GB SSD -silver-free dos-free laptop bag
+                            <time class="product-info">
+                               {{product.description}}
                             </time>
 
                         </div>
                     </div>
-
                     <el-button type="primary pull-right" icon="el-icon-sold-out"> Order</el-button>
                 </el-card>
+
             </el-col>
         </el-row>
     </page-layout>
 </template>
 
 <style>
-    .time {
+    .product-info {
         font-size: 13px;
         color: #999;
     }
@@ -67,6 +75,10 @@
     .pull-right {
         float: right;
         margin: 5px;
+    }
+    .product-price{
+        color: #931621;
+        background-color: #eef1f6;
     }
 </style>
 

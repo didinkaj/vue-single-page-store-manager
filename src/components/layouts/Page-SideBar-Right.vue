@@ -8,7 +8,6 @@
                         class="el-menu-vertical-demo"
                         @open="handleOpen"
                         @close="handleClose">
-
                     <el-menu-item index="1">
                         <i class="el-icon-menu"></i>
                         <span>Home</span>
@@ -34,7 +33,7 @@
 
 <script>
     export default {
-        name:'sidebar-right',
+        name: 'sidebar-right',
         data() {
             return {
                 isCollapse: true
@@ -52,8 +51,15 @@
 </script>
 
 <style>
-.logo{
-    padding-left: 25px;
-    color: brown;
-}
+    .logo {
+        padding-left: 25px;
+        color: #931621;
+    }
+    .el-aside {
+        color: #333;
+        background-color: #123456;
+        line-height: 100%;
+        position: fixed;
+        z-index: 900;
+    }
 </style>

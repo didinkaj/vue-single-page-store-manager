@@ -21,8 +21,8 @@
     };
 </script>
 <template>
-    <el-container class="maincontainer">
-        <el-header class="mainheader">
+    <el-container class="main-container">
+        <el-header class="main-header">
             <head-nav></head-nav>
         </el-header>
         <el-main>
@@ -30,7 +30,9 @@
                 <side-bar-left></side-bar-left>
             </el-col>
             <el-col :span="15" class="main-content" :offset="5">
-                <slot name="content"></slot>
+                <slot name="content">
+
+                </slot>
             </el-col>
             <el-col :span="4" class="cart">
                 <side-bar-right></side-bar-right>
@@ -50,7 +52,7 @@
         font-family: Helvetica;
     }
 
-    .mainheader {
+    .main-header {
         background-color: #123456;
         color: #ffffff;
         height: 70px;
@@ -64,14 +66,7 @@
         margin-top: 60px;
     }
 
-    .el-aside {
-        color: #333;
-        background-color: #123456;
-        line-height: 100%;
-        position: fixed;
-    }
-
-    .maincontainer {
+    .main-container {
         height: 100vh;
         border: 1px solid #eee
     }
@@ -79,16 +74,6 @@
     .main-content {
         position: relative;
     }
-
-    .el-footer {
-        background-color: #123456;
-        color: yellow;
-        text-align: center;
-        padding: 0px;
-        margin: -1px;
-        height: 50px;
-    }
-
 
 </style>
 
