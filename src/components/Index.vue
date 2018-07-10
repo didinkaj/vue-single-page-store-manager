@@ -1,8 +1,8 @@
 <script>
-    import SideBarLeft from '@/components/layouts/Page-SideBar-Left'
-    import SideBarRight from '@/components/layouts/Page-SideBar-Right'
-    import HeaderNav from '@/components/layouts/Page-Header'
-    import PageFooter from '@/components/layouts/Page-Footer'
+    import SideBarLeft from '@/components/layouts/sidebar/left'
+    import SideBarRight from '@/components/layouts/sidebar/right'
+    import HeaderNav from '@/components/layouts/header'
+    import PageFooter from '@/components/layouts/footer'
     import ElCol from "element-ui/packages/col/src/col";
     import ElFooter from "../../node_modules/element-ui/packages/footer/src/main.vue";
 
@@ -29,12 +29,11 @@
             <el-col :span="4" :offset="1">
                 <side-bar-left></side-bar-left>
             </el-col>
-            <el-col :span="15" class="main-content" :offset="5">
-                <slot name="content">
+            <el-col :span="14" class="main-content" >
 
-                </slot>
+                <router-view></router-view>
             </el-col>
-            <el-col :span="4" class="cart">
+            <el-col :span="4" class="cart" :offset="19">
                 <side-bar-right></side-bar-right>
             </el-col>
         </el-main>
@@ -73,6 +72,9 @@
 
     .main-content {
         position: relative;
+    }
+    .cart{
+        position: fixed;
     }
 
 </style>

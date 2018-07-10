@@ -1,9 +1,9 @@
 <script>
-    import Products from '@/components/products/Products-List'
+    import Homepage from '@/components/Index'
     export default {
         name: 'App',
         components: {
-            'home-page': Products
+            'home-page': Homepage
         },
         data() {
             return {
@@ -16,8 +16,7 @@
 
 <template>
     <div id="app">
-
-        <home-page :msghome="data"></home-page>
+        <home-page></home-page>
     </div>
 </template>
 

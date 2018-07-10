@@ -8,16 +8,22 @@
                 background-color="#123456"
                 text-color="#fff"
                 active-text-color="yellow">
-            <el-menu-item index="1" class="is-active">VueJS Application Store</el-menu-item>
+            <el-menu-item index="1" class="is-active">VueJS Electronic Store</el-menu-item>
             <el-submenu index="2">
                 <template slot="title">Products</template>
-                <el-menu-item index="2-1">Computers</el-menu-item>
-                <el-menu-item index="2-2">Laptops</el-menu-item>
-                <el-menu-item index="2-3">Phones</el-menu-item>
+                <el-menu-item index="2-1"><router-link :to="{name:'productsadd_route'}">Add Products</router-link></el-menu-item>
+                <el-menu-item index="2-2"><router-link :to="{name:'productscategoriesadd_route'}">Add Product Category</router-link></el-menu-item>
+                <el-menu-item index="2-3"><router-link :to="{name:'productslist_route'}">Add Category</router-link></el-menu-item>
             </el-submenu>
             <el-menu-item index="3" class="search">
                search
             </el-menu-item>
+            <router-link :to="{name:'userlogin_route'}">
+                <el-menu-item index="3" class="search">
+                    Johnson Didinka
+                </el-menu-item>
+            </router-link>
+
         </el-menu>
     </div>
 </template>
@@ -43,6 +49,11 @@
     .search {
         float: right;
     }
+    a{
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
 
 </style>
 
