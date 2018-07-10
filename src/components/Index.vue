@@ -29,9 +29,11 @@
             <el-col :span="4" :offset="1">
                 <side-bar-left></side-bar-left>
             </el-col>
-            <el-col :span="14" class="main-content" >
 
-                <router-view></router-view>
+            <el-col :span="15" class="main-content" :offset="5" >
+                <el-collapse-transition>
+                    <router-view></router-view>
+                </el-collapse-transition>
             </el-col>
             <el-col :span="4" class="cart" :offset="19">
                 <side-bar-right></side-bar-right>

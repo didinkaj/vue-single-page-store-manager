@@ -75,7 +75,7 @@
         color: #333;
         background-color: #123456;
         line-height: 100%;
-        /*position: fixed;*/
+        position: fixed;
         z-index: 900;
     }
 </style>

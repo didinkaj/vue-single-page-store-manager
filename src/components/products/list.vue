@@ -20,7 +20,7 @@
     }
 </script>
 <template>
-    <div>
+    <div >
 
         <el-row>
             <el-col :span="7" v-for="product in products" :key="product.id" :offset="product > 0 ? 1 : 1" class="product">
@@ -71,7 +71,7 @@
 
     .product {
         margin: 10px;
-        margin-bottom: 10px;
+
     }
     .product-name{
         text-align: center;
@@ -85,6 +85,9 @@
     .product-price{
         color: #931621;
         background-color: #eef1f6;
+    }
+    .product-desc{
+        height: 75px;
     }
 </style>
 

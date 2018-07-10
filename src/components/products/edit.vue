@@ -1,6 +1,6 @@
 <script>
     export default {
-        name:'editproduct_route',
+        name:'productsedit_route',
         data(){
             return{
 

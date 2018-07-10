@@ -52,6 +52,7 @@
     a{
         color: #FFFFFF;
         text-decoration: none;
+        display: block;
     }
 
 

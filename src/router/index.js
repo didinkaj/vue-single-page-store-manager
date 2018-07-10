@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ProductList from '@/components/products/list'
 import AddProducts from '@/components/products/add'
+import ProductsEdit from '@/components/products/edit'
 import ProductsDetail from '@/components/products/detail'
 import ProductCategoriesAdd from '@/components/products/categories/add'
 import UserAccount from '@/components/users/account'
@@ -22,7 +23,7 @@ export default new Router({
         children:[
             {
                 path:'Rproducts/detail/:id',
-                name:'Rproductsdetail_route',
+                name:'productsdetail_nroute',
                 component:ProductsDetail
             }
             ]
@@ -33,12 +34,17 @@ export default new Router({
       component: ProductList
     },
       {
-        path:'products/add',
+        path:'/products/add',
           name:'productsadd_route',
           component:AddProducts
       },
       {
-          path:'products/detail/:id',
+        path:'/products/edit',
+          name:'productsedit_route',
+          component:ProductsEdit
+      },
+      {
+          path:'/products/detail/:id',
           name:'productsdetail_route',
           component:ProductsDetail
       },
