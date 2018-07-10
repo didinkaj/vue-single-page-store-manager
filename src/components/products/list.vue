@@ -21,12 +21,12 @@
 </script>
 <template>
     <div>
-        <router-view></router-view>
+
         <el-row>
             <el-col :span="7" v-for="product in products" :key="product.id" :offset="product > 0 ? 1 : 1" class="product">
                 <el-card :body-style="{ padding: '0px' }">
                     <!--:src="product.img"-->
-                    <router-link :to="{name:'productsdetail_route'}">
+                    <router-link :to="{name:'productsdetail_route', params:{id:product.id}}">
                     <img class="img-product"  src="../../assets/laptop.jpg">
                     <div class="product-desc" style="padding: 14px;">
                         <div class="product-name" >{{product.name}} : <span class="product-price">$ {{product.price}}</span></div>

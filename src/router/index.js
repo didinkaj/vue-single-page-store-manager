@@ -21,21 +21,26 @@ export default new Router({
       component: ProductList,
         children:[
             {
-                path:'products/detail/:id',
-                name:'productsdetail_route',
+                path:'Rproducts/detail/:id',
+                name:'Rproductsdetail_route',
                 component:ProductsDetail
             }
             ]
     },
       {
       path: '/products/list',
-      name: 'productslist_route',
+      name: 'productslist_routea',
       component: ProductList
     },
       {
         path:'products/add',
           name:'productsadd_route',
           component:AddProducts
+      },
+      {
+          path:'products/detail/:id',
+          name:'productsdetail_route',
+          component:ProductsDetail
       },
       {
         path:'products/categories/add',
