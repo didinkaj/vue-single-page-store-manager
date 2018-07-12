@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import List from './Products/list'
+import Users from './users/users'
+import Cart from './shopping/cart'
 Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
@@ -18,7 +20,7 @@ const store = new Vuex.Store({
     getters: {},
     actions: {},
     modules: {
-        List,
+        List,Users,Cart
     }
 });
 

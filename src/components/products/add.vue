@@ -76,9 +76,10 @@
 </script>
 <template>
     <div>
-        <el-card class="add-product-form">
+        <el-col :span="22">
+        <el-card class="add-product-form" >
             <p class="form-title">Add Product Form {{blogNo}}</p>
-            <el-form ref="form" :model="addProductForm" label-width="120px">
+            <el-form ref="form" :model="addProductForm" label-width="120px" required="required">
                 <el-form-item label="Product Name">
                     <el-input v-model="addProductForm.productName"></el-input>
                 </el-form-item>
@@ -113,6 +114,7 @@
                 </el-form-item>
             </el-form>
         </el-card>
+        </el-col>
     </div>
 
 </template>

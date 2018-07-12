@@ -8,35 +8,35 @@ const state = {
         previllege: '1'
     },
         {
-            id:1,
+            id:2,
             names: 'Johnson Didinya:',
             email: 'jdidinya@gmail.com',
             password: '',
             previllege: '1'
         },
         {
-            id:1,
+            id:3,
             names: 'Johnson Didinya:',
             email: 'jdidinya@gmail.com',
             password: '',
             previllege: '1'
         },
         {
-            id:1,
+            id:4,
             names: 'Johnson Didinya:',
             email: 'jdidinya@gmail.com',
             password: '',
             previllege: '1'
         },
         {
-            id:1,
+            id:5,
             names: 'Johnson Didinya:',
             email: 'jdidinya@gmail.com',
             password: '',
             previllege: '1'
         },
         {
-            id:1,
+            id:6,
             names: 'Johnson Didinya:',
             email: 'jdidinya@gmail.com',
             password: '',

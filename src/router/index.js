@@ -49,34 +49,35 @@ export default new Router({
           component:ProductsDetail
       },
       {
-        path:'products/categories/add',
+        path:'/products/categories/add',
           name:'productscategoriesadd_route',
           component:ProductCategoriesAdd
       },
       {
-        path:'user/account',
+        path:'/user/account',
           name:'useraccount_route',
           component:UserAccount
       },
       {
-        path:'user/products',
+        path:'/user/products',
           name:'userproducts_route',
           component:UserProducts
       },
       {
-          path:'user/cart',
+          path:'/user/cart',
           name:'usercart_route',
           component:UserCart
       },
       {
-          path:'user/login',
+          path:'/user/login',
           name:'userlogin_route',
           component:UserLogin
       },
       {
-          path:'user/register',
+          path:'/user/register',
           name:'userregister_route',
           component:UserRegister
       }
-  ]
+  ],
+    mode:'history'
 })

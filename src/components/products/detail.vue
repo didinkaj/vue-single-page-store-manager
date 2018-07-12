@@ -36,7 +36,7 @@
             });
         },
             editProduct(){
-                return this.$router.push('/products/edit')
+                return this.$router.push( '/products/edit')
             }
         },
         mounted(){
@@ -50,11 +50,11 @@
             <el-col :span="22" v-for="product in product" :key="product.id" :offset="product > 0 ? 1 : 1" class="product">
                 <el-card :body-style="{ padding: '0px' }">
                     <!--:src="product.img"-->
-                        <img class="img-product-dets"  src="../../assets/laptop.jpg">
+                        <img class="img-product-dets-1"  src="../../assets/laptop.jpg">
 
 
                     <el-dropdown class="pull-right">
-                        <el-button type="default danger ">
+                        <el-button type="default danger more-options">
                             <i class="el-icon-arrow-down el-icon--right"></i>
                         </el-button>
                         <el-dropdown-menu slot="dropdown">
@@ -87,15 +87,20 @@
 
 </template>
 <style>
-    .img-product-dets{
+    .img-product-dets-1{
         margin-top: 15px;
         margin-left: 15px;
     }
     .link-product{
         color: #1b1e21;
+
     }
     .red-icon{
         color:red;
+    }
+    .more-options{
+        color:blue;
+        background: #eef1f6;
     }
 
 </style>
