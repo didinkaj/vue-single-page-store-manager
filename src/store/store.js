@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import List from './Products/list'
 import Users from './users/users'
 import Cart from './shopping/cart'
+import SideBarItems from './Products/category'
 Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
@@ -20,7 +21,7 @@ const store = new Vuex.Store({
     getters: {},
     actions: {},
     modules: {
-        List,Users,Cart
+        List,Users,Cart,SideBarItems
     }
 });
 

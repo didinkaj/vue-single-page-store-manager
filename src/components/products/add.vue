@@ -37,11 +37,12 @@
                     description: this.addProductForm.productDesc,
                     date: date,
                     price: this.addProductForm.price,
-                    category: this.addProductForm.category,
+                    category_id: this.addProductForm.category,
                     img: this.url
+
                 }
                 console.log(newProduct)
-                if(!this.addProductForm.productName){
+                if(this.addProductForm.productName && this.addProductForm.price && this.addProductForm.category){
                     this.$store.commit('ADD_PRODUCT', newProduct)
                     this.saveSuccess();
                     return this.$router.push( '/')
@@ -78,7 +79,7 @@
     <div>
         <el-col :span="22">
         <el-card class="add-product-form" >
-            <p class="form-title">Add Product Form {{blogNo}}</p>
+            <p class="form-title">Add Product Form </p>
             <el-form ref="form" :model="addProductForm" label-width="120px" required="required">
                 <el-form-item label="Product Name">
                     <el-input v-model="addProductForm.productName"></el-input>
@@ -92,11 +93,11 @@
                     <el-col :span="12">
                         <el-form-item label="Category">
                             <el-select v-model="addProductForm.category" placeholder="please select Category">
-                                <el-option label="Computers" value="Computers"></el-option>
-                                <el-option label="Laptops" value="Printers"></el-option>
-                                <el-option label="Computers" value="Laptops"></el-option>
-                                <el-option label="Laptops" value="Phones"></el-option>
-                                <el-option label="Computers" value="Accessorie"></el-option>
+                                <el-option label="Computers" value="1"></el-option>
+                                <el-option label="Laptops" value="2"></el-option>
+                                <el-option label="Computers" value="3"></el-option>
+                                <el-option label="Laptops" value="4"></el-option>
+                                <el-option label="Computers" value="5"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>

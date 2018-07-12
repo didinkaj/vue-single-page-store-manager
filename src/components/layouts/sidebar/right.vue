@@ -8,7 +8,7 @@
                         class="el-menu-vertical-demo"
                         @open="handleOpen"
                         @close="handleClose">
-                    <router-link :to="{name:'useraccount_route'}">
+                    <router-link :to="{name:'productslist_route'}">
                     <el-menu-item index="1">
                         <i class="el-icon-menu"></i>
                         <span>Home</span>
