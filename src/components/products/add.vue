@@ -13,7 +13,7 @@
         data() {
             return {
                 url: '/static/img/laptop.737283c.jpg',
-                productCount:'',
+                productNo:'',
                 addProductForm: {
                     productName: '',
                     price: '',
@@ -24,15 +24,16 @@
         },
         computed: {
             ...mapGetters({
-                blogNo: 'blogNo'
+                productCount: 'productCount',
+                category:'category'
             })
         },
         methods: {
             onSubmit() {
                 const date = new Date()
-                const userId = 7
+                const userId = this.productNo+1
                 let newProduct = {
-                    id: 7,
+                    id: userId,
                     name: this.addProductForm.productName,
                     description: this.addProductForm.productDesc,
                     date: date,
@@ -53,7 +54,7 @@
 
             },
             getProductNO(){
-                this.productCount = this.blogNo
+                this.productNo = this.productCount
 
             },
             saveSuccess() {
@@ -72,6 +73,8 @@
         },
         created(){
             this.getProductNO();
+        },
+        watch:{
         }
     }
 </script>
@@ -93,11 +96,7 @@
                     <el-col :span="12">
                         <el-form-item label="Category">
                             <el-select v-model="addProductForm.category" placeholder="please select Category">
-                                <el-option label="Computers" value="1"></el-option>
-                                <el-option label="Laptops" value="2"></el-option>
-                                <el-option label="Computers" value="3"></el-option>
-                                <el-option label="Laptops" value="4"></el-option>
-                                <el-option label="Computers" value="5"></el-option>
+                                <el-option v-for="name in category" :key="name.id" :label="name.name" :value="name.id"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>

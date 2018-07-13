@@ -46,18 +46,24 @@
             <el-col :span="24">
                 <h5 class="logo">Products Categories</h5>
                 <el-menu
-                          default-active="1"
+                          default-active="0"
                           class="el-menu-vertical-demo"
                           @open="handleOpen"
                           @close="handleClose">
-                    <el-col v-for="item in items">
-                    <router-link  :to="{name:'productscategory_route', params:{id:item.id}}">
+                    <router-link :to="{name:'productslist_route'}">
+                    <el-menu-item index="0">
+                        <i class="el-icon-tickets"></i>
+                        <span>All Products</span>
+                    </el-menu-item>
+                    </router-link>
+
+                    <router-link v-for="item in items" :to="{name:'productscategory_route', params:{id:item.id}}" :key="item.id">
                     <el-menu-item  :index="item.id | numberToString">
                         <i :class="item.icon"></i>
                         <span>{{item.name}}</span>
                     </el-menu-item>
                     </router-link>
-                    </el-col>
+
                 </el-menu>
 
             </el-col>

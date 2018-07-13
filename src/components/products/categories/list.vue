@@ -19,11 +19,7 @@
             filterProducts() {
                 let id = this.$route.params.id;
                 let product = this.products.filter(product => product.category_id==id);
-
-//                console.log(this.product);
-
                 this.product = product;
-//                console.log(product);
             },
             deleteProduct(product) {
                 console.log(product)
@@ -40,6 +36,30 @@
             },
             editProduct() {
                 return this.$router.push('/products/edit')
+            },
+            addToCart(product){
+                const date = new Date()
+                let newProduct = {
+                    id: product.id,
+                    user_id:1,
+                    name: product.name,
+                    description: product.description,
+                    date: date,
+                    price: product.price,
+                    category_id: product.category,
+                    img: product.img
+                }
+                console.log('item added'+newProduct)
+                this.$store.commit('ADD_CART_PRODUCT', newProduct)
+                this.saveSuccess();
+
+            },
+            saveSuccess() {
+                this.$notify({
+                    title: 'Success',
+                    message: 'Product added successfully',
+                    type: 'success'
+                });
             }
         },
         mounted() {
@@ -71,7 +91,7 @@
                             </div>
                         </div>
                     </router-link>
-                    <el-button type="primary pull-right" icon="el-icon-sold-out"> Order</el-button>
+                    <el-button type="primary pull-right" @click="addToCart(product)" icon="el-icon-sold-out"> Order</el-button>
                 </el-card>
 
             </el-col>

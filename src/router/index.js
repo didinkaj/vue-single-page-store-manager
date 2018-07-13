@@ -4,6 +4,7 @@ import ProductList from '@/components/products/list'
 import AddProducts from '@/components/products/add'
 import ProductsEdit from '@/components/products/edit'
 import ProductsDetail from '@/components/products/detail'
+import Category from '@/components/products/categories/detail'
 import ProductCategoriesAdd from '@/components/products/categories/add'
 import ProductCategory from '@/components/products/categories/list'
 import UserAccount from '@/components/users/account'
@@ -54,6 +55,10 @@ export default new Router({
         path:'/products/categories/add',
           name:'productscategoriesadd_route',
           component:ProductCategoriesAdd
+      },{
+        path:'/products/categories/details',
+          name:'productscategoriesdetails_route',
+          component:Category
       },
       {
         path:'/user/account',

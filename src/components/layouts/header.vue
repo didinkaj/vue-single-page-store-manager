@@ -18,7 +18,7 @@
                     <router-link :to="{name:'productscategoriesadd_route'}">Add Product Category</router-link>
                 </el-menu-item>
                 <el-menu-item index="2-3">
-                    <router-link :to="{name:'productslist_route'}">Add Category</router-link>
+                    <router-link :to="{name:'productscategoriesdetails_route'}">View Categories</router-link>
                 </el-menu-item>
             </el-submenu>
             <el-menu-item index="3" class="search">

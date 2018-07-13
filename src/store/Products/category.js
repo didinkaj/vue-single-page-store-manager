@@ -4,31 +4,26 @@ const state = {
         id: 1,
         name: 'Computers:',
         icon: 'el-icon-menu',
-        route:'productslist_route',
     },
         {
             id: 2,
             name: 'Printers:',
             icon: 'el-icon-printer',
-            route:'useraccount_route',
         },
         {
             id: 3,
             name: 'Computers:',
             icon: 'el-icon-goods',
-            route:'productslist_route',
         },
         {
             id: 4,
             name: 'Phones:',
             icon: 'el-icon-mobile-phone',
-            route:'productslist_route',
         },
         {
             id: 5,
             name: 'Accessories:',
             icon: 'el-icon-service',
-            route:'productslist_route',
         }
     ],
 

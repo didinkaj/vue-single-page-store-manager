@@ -50,10 +50,18 @@ const state = {
 }
 
 const getters = {
-    cartItems: state => state.cartItems
+    cartItems: state => state.cartItems,
+    cartItemsNo: state => state.cartItems.length,
 }
 
-const mutations = {};
+const mutations = {
+    ADD_CART_PRODUCT(state, data){
+        state.cartItems.unshift(data)
+    },
+    DELETE_CART_PRODUCT(state, data){
+        state.cartItems.splice( state.cartItems.indexOf(data), 1 );
+    }
+};
 
 const actions = {};
 

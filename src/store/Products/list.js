@@ -61,7 +61,7 @@ const state = {
 const getters = {
     products: state => state.products,
     price: state => state.price,
-    blogNo: state => state.blogs
+    productCount: state => state.products.length
 }
 
 const mutations = {
