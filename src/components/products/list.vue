@@ -14,14 +14,17 @@
                 names: 'names'
             }),
             ...mapGetters({
-                products:'products'
+                products:'products',
+                cartItemsNo:'cartItemsNo'
             })
         },
         methods:{
             addToCart(product){
                 const date = new Date()
+                let id = this.cartItemsNo+1
                 let newProduct = {
-                    id: product.id,
+                    id:id,
+                    product_id: product.id,
                     user_id:1,
                     name: product.name,
                     description: product.description,
@@ -48,7 +51,7 @@
 <template>
     <div >
 
-        <el-row>
+        <el-row >
             <el-col :span="7" v-for="product in products" :key="product.id" :offset="product > 0 ? 1 : 1" class="product">
                 <el-card :body-style="{ padding: '0px' }">
                     <!--:src="product.img"-->

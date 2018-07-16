@@ -80,7 +80,10 @@
                 </el-card>
 
             </el-col>
-            <router-link :to="{name:'productslist_route'}"><el-button type="default pull-right">Back</el-button></router-link>
+            <el-col :span="22">
+                <router-link :to="{name:'productslist_route'}"><el-button type="default pull-right">Back</el-button></router-link>
+            </el-col>
+
         </el-row>
     </div>
 
@@ -100,9 +103,6 @@
     .more-options{
         color:blue;
         background: #eef1f6;
-    }
-    .pull-right{
-        margin-right: 55px;
     }
 
 </style>

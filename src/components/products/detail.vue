@@ -52,6 +52,13 @@
                 type: 'success'
             });
         },
+            saveSuccess() {
+                this.$notify({
+                    title: 'Success',
+                    message: 'Added to cart successfully',
+                    type: 'success'
+                });
+            },
             editProduct(){
                 return this.$router.push( '/products/edit')
             }
