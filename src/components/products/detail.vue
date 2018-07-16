@@ -24,7 +24,7 @@
                 name: product.name,
                 description: product.description,
                 date: date,
-                price: product.price,
+                price: parseInt(product.price),
                 category_id: product.category,
                 img: product.img
             }
@@ -42,6 +42,7 @@
             deleteProduct(product){
                 console.log(product)
                 this.$store.commit('DELETE_PRODUCT', product)
+//                this.$store.commit('DELETE_CART_PRODUCT', product)
                 this.deleteSuccess();
                 return this.$router.push( '/')
             },

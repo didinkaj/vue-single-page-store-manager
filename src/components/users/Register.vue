@@ -1,4 +1,5 @@
 <script>
+    import firebase from 'firebase'
     export default {
         name:'userregister_route',
         data(){
@@ -14,7 +15,10 @@
         },
         methods:{
             onSubmit(){
-                console.log('submitted')
+               firebase.auth().createUserWithEmailAndPassword(this.registerForm.email,this.registerForm.password)
+                   .then((user)=>{
+                   console.log(user);
+                   })
             }
         }
     }

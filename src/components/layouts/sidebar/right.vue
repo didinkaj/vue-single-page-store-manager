@@ -1,5 +1,6 @@
 <script>
     import {mapGetters} from 'vuex'
+    import firebase from  'firebase'
     export default {
         name: 'sidebar-right',
         data() {
@@ -22,6 +23,13 @@
             },
             cartDetails(){
                 this.itemsInCart = this.cartItemsNo;
+            }
+            ,
+            logout(){
+                firebase.auth().signOut().then(()=>{
+                    this.$router.push('user/login');
+                })
+
             }
         },
         created(){
@@ -62,12 +70,12 @@
                         <span>Cart <span class="item-in-cart">({{itemsInCart}})</span></span>
                     </el-menu-item>
                     </router-link>
-                    <router-link :to="{name:'userlogin_route'}">
-                    <el-menu-item index="4">
+                    <!--<router-link :to="{name:'userlogin_route'}">-->
+                    <el-menu-item @click="logout()"  index="4">
                         <i class="el-icon-setting"></i>
-                        <span>Log In</span>
+                        <span>Log Out</span>
                     </el-menu-item>
-                    </router-link>
+                    <!--</router-link>-->
                 </el-menu>
             </el-col>
 

@@ -7,18 +7,23 @@ import locale from 'element-ui/lib/locale/lang/en';
 import 'element-ui/lib/theme-chalk/index.css';
 import router from './router'
 import store from './store/store'
+import firebase from 'firebase'
+import './firebaseconfig'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, { locale });
-
-/* eslint-disable no-new */
-new Vue({
-    el: '#app',
-    store,
-    router,
-    components: {App},
-    template: '<App/>'
-})
-
+let app;
+firebase.auth().onAuthStateChanged(function(user) {
+    if (!app) {
+        /* eslint-disable no-new */
+        app = new Vue({
+            el: '#app',
+            router,
+            store,
+            template: '<App/>',
+            components: { App }
+        });
+    }
+});
 
 

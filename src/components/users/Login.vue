@@ -2,6 +2,8 @@
     import ElRow from "element-ui/packages/row/src/row";
     import ElCol from "element-ui/packages/col/src/col";
 
+    import firebase from 'firebase'
+
     export default {
         components: {
             ElCol,
@@ -10,7 +12,7 @@
         data(){
             return{
                 loginForm: {
-                    productName: '',
+                    email: '',
                     password: ''
                 }
 
@@ -18,7 +20,31 @@
         },
         methods:{
             onSubmit(){
-                console.log('submitted')
+
+                firebase.auth().signInWithEmailAndPassword(this.loginForm.email,this.loginForm.password)
+                    .then((resp)=>{
+                    console.log(JSON.stringify(  resp.user.email));
+                    this.saveSuccess(resp.user.email);
+                        this.$router.push('/');
+
+                    }).catch(error => {
+                        //console.log(error.message);
+                    this.saveError(error.message);
+                })
+                //console.log('submitted')
+            },
+            saveSuccess(user) {
+                this.$notify({
+                    title: 'Success',
+                    message: 'Welcome '+ user,
+                    type: 'success'
+                });
+            },
+            saveError(message) {
+                this.$notify.error({
+                    title: 'Error',
+                    message: message
+                });
             }
         }
     }

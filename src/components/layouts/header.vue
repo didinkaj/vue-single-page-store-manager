@@ -1,4 +1,5 @@
 <script>
+    import {mapGetters, mapActions} from 'vuex'
     export default {
         name: 'headernav',
         data() {
@@ -12,7 +13,16 @@
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
             }
-        }
+        },
+        computed:{
+            ...mapGetters({
+                users:'users',
+                loggedinUser:'loggedinUser'
+            })
+        },
+
+
+
     }
 </script>
 <template>
@@ -43,7 +53,7 @@
             </el-menu-item>
             <router-link :to="{name:'userlogin_route'}">
                 <el-menu-item index="3" class="search">
-                    Johnson Didinka
+                    {{loggedinUser.user }}
                 </el-menu-item>
             </router-link>
 

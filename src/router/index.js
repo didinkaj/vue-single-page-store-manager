@@ -1,3 +1,4 @@
+// noinspection JSAnnotator
 import Vue from 'vue'
 import Router from 'vue-router'
 import ProductList from '@/components/products/list'
@@ -12,11 +13,12 @@ import UserProducts from '@/components/users/products'
 import UserCart from '@/components/users/cart'
 import UserLogin from '@/components/users/login'
 import UserRegister from '@/components/users/register'
+import firebase from 'firebase'
 
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -73,7 +75,10 @@ export default new Router({
       {
           path:'/user/cart',
           name:'usercart_route',
-          component:UserCart
+          component:UserCart,
+          meta:{
+              requiresAuth:true
+          }
       },
       {
           path:'/user/login',
@@ -88,3 +93,26 @@ export default new Router({
   ],
     mode:'history'
 })
+
+router.beforeEach((to, from, next) => {
+    let currentUser = firebase.auth().currentUser;
+console.log("firebasedata",currentUser);
+if (to.matched.some(record => record.meta.requiresAuth)){
+
+    if (!currentUser) {
+        next({
+            path: '/user/login',
+            query: {redirect: to.fullPath}
+        })
+    } else {
+        next();
+    }
+
+}else {
+
+    next();
+}
+
+})
+
+export default router;
