@@ -21,7 +21,7 @@
         methods:{
             addToCart(product){
                 const date = new Date()
-                let id = this.cartItemsNo+1
+                let id = this.cartItemsNo + 1
                 let newProduct = {
                     id:id,
                     product_id: product.id,
@@ -29,7 +29,7 @@
                     name: product.name,
                     description: product.description,
                     date: date,
-                    price: product.price,
+                    price: parseInt(product.price),
                     category_id: product.category,
                     img: product.img
                 }

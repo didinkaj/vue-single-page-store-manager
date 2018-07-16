@@ -1,3 +1,20 @@
+<script>
+    export default {
+        name: 'headernav',
+        data() {
+            return {
+                activeIndex: '1',
+                activeIndex2: '1',
+                input4: '',
+            };
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            }
+        }
+    }
+</script>
 <template>
     <div>
         <el-menu
@@ -34,23 +51,7 @@
     </div>
 </template>
 
-<script>
-    export default {
-        name: 'headernav',
-        data() {
-            return {
-                activeIndex: '1',
-                activeIndex2: '1',
-                input4: '',
-            };
-        },
-        methods: {
-            handleSelect(key, keyPath) {
-                console.log(key, keyPath);
-            }
-        }
-    }
-</script>
+
 <style>
     .search {
         float: right;

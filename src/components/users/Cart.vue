@@ -72,7 +72,7 @@
                 <el-col :span="12">
                     <p> My Cart Items</p>
                 </el-col>
-                <el-col :span="10">
+                <el-col :span="10" class="price-div">
                     <el-card> Total Amount: <span class="total-price">Ksh {{totalAmountInCart * 100 | priceWithComma}}</span></el-card>
                 </el-col>
             </el-row>
@@ -85,8 +85,8 @@
                     </el-col>
                     <el-col :span="18">
                         <div class="product-desc" style="padding: 14px;">
-                            <div class="product-name-incart">{{product.name}} : <span
-                                    class="product-price">$ {{product.price}}</span></div>
+                            <div class="product-name-incart"><span class="product-price">{{product.quantity}}</span>&nbsp;{{product.name}} : <span
+                                    class="product-price">$ {{product.price}}   </span></div>
                             <div class="bottom clearfix">
                                 <time class="product-info">
                                     {{product.description}}
@@ -97,18 +97,27 @@
                     </el-col>
                     <el-button type="danger pull-right" icon="el-icon-sold-out" @click="removeItem(product)"> Remove
                     </el-button>
-
-
                 </el-card>
 
             </el-col>
-            <router-link :to="{name:'productslist_route'}">
-                <el-button type="default pull-right pull-right-margin">Continue Shopping</el-button>
-
-                <el-button type="success pull-right pull-right-margin">Check Out</el-button>
-            </router-link>
-
         </el-row>
+
+
+            <el-row>
+                <el-col :span="12">
+                    &nbsp;
+                </el-col>
+                <el-col :span="10" class="price-div">
+                    <router-link :to="{name:'productslist_route'}">
+                        <el-button type="default pull-right pull-right-margin">Continue Shopping</el-button>
+                        <el-button type="success pull-right pull-right-margin">Check Out</el-button>
+                    </router-link>
+                </el-col>
+            </el-row>
+
+
+
+
     </div>
 
 </template>
@@ -126,6 +135,10 @@
         margin-left: 20px;
         font-weight: 800;
         font-size: 18px;
+
+    }
+    .price-div{
+        margin-left: 10px;
     }
 
 </style>

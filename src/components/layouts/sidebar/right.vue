@@ -65,7 +65,7 @@
                     <router-link :to="{name:'userlogin_route'}">
                     <el-menu-item index="4">
                         <i class="el-icon-setting"></i>
-                        <span>Log Out</span>
+                        <span>Log In</span>
                     </el-menu-item>
                     </router-link>
                 </el-menu>
