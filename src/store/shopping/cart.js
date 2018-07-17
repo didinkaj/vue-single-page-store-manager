@@ -42,13 +42,19 @@ const state = {
 }
 
 const getters = {
-    cartItems: state => state.cartItems,
-    cartItemsNo: state => state.cartItems.length,
+    cartItems:state => state.cartItems,
+    cartItemsNo :state => state.cartItems.length,
 }
 
 const mutations = {
     ADD_CART_PRODUCT(state, data){
-        state.cartItems.unshift(data)
+        const record = state.cartItems.find(product => product.id === data.product_id)
+        if(!record){
+            state.cartItems.unshift(data)
+        }else{
+            record.quantity++
+        }
+
     },
     DELETE_CART_PRODUCT(state, data){
         state.cartItems.splice( state.cartItems.indexOf(data), 1 );

@@ -23,7 +23,7 @@
                 let arrayItemsInCart = this.itemsInCart
 
                 let total = arrayItemsInCart.reduce(function(prev, cur) {
-                    return prev + cur.price;
+                    return prev + (cur.price * cur.quantity);
                 }, 0);
 
                 return total;

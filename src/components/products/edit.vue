@@ -20,6 +20,7 @@
                     date: '',
                     id: '',
                     img:'',
+                    quantity:'',
                     price:''
                 }
 
@@ -37,12 +38,12 @@
         methods: {
             onSubmit() {
                 const date = new Date()
-                const userId = this.productNo + 1
                 let newProduct = {
-                    id: userId,
+                    id: this.addProductForm.id,
                     name: this.addProductForm.productName,
                     description: this.addProductForm.productDesc,
                     date: date,
+                    quantity:this.addProductForm.quantity,
                     price: this.addProductForm.price,
                     category_id: this.addProductForm.category,
                     img: this.url
@@ -99,7 +100,7 @@
     <div>
         <el-col :span="22" class="product">
             <el-card class="add-product-form">
-                <p class="form-title">Add Product Form</p>
+                <p class="form-title">Edit Product Form</p>
                 <el-form ref="form" :model="addProductForm"  label-width="120px" required="required">
                     <el-form-item label="Product Name">
                         <el-input v-model="addProductForm.name"></el-input>
@@ -107,7 +108,7 @@
                     <el-row>
                         <el-col :span="12">
                             <el-form-item label="Price">
-                                <el-input v-model="addProductForm.price"></el-input>
+                                <el-input type="number" v-model="addProductForm.price"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="12">
@@ -119,13 +120,18 @@
                             </el-form-item>
                         </el-col>
                     </el-row>
-
-
+                    <el-row>
+                        <el-col :span="12" :offset="6">
+                            <el-form-item label="Quantity">
+                                <el-input type="number" v-model="addProductForm.quantity"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
                     <el-form-item label="Description">
                         <el-input type="textarea" :rows="8" v-model="addProductForm.description"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit" class="create-product">Edit</el-button>
+                        <el-button type="primary" @click="onSubmit" class="create-product">Save Changes</el-button>
                         <router-link :to="{name:'productslist_route'}">
                             <el-button>Cancel</el-button>
                         </router-link>

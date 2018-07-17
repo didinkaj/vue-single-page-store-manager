@@ -18,6 +18,8 @@
                     productName: '',
                     price: '',
                     category: '',
+                    quantity:'',
+                    image:'',
                     productDesc: ''
                 }
             }
@@ -31,12 +33,13 @@
         methods: {
             onSubmit() {
                 const date = new Date()
-                const userId = this.productNo+1
+                const Id = this.productNo+1
                 let newProduct = {
-                    id: userId,
+                    id: Id,
                     name: this.addProductForm.productName,
                     description: this.addProductForm.productDesc,
                     date: date,
+                    quantity:this.addProductForm.quantity,
                     price: this.addProductForm.price,
                     category_id: this.addProductForm.category,
                     img: this.url
@@ -69,6 +72,9 @@
                     title: 'Error',
                     message: 'Error ensure all the fields are filled'
                 });
+            },
+            submitUpload() {
+                this.$refs.upload.submit();
             }
         },
         created(){
@@ -90,7 +96,7 @@
                 <el-row>
                     <el-col :span="12">
                         <el-form-item label="Price">
-                            <el-input v-model="addProductForm.price"></el-input>
+                            <el-input type="number" v-model="addProductForm.price"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
@@ -102,7 +108,13 @@
                     </el-col>
                 </el-row>
 
-
+                <el-row>
+                    <el-col :span="12" :offset="6">
+                        <el-form-item label="Quantity">
+                            <el-input type="number" v-model="addProductForm.quantity"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
                 <el-form-item label="Description">
                     <el-input type="textarea" :rows="8" v-model="addProductForm.productDesc"></el-input>
                 </el-form-item>

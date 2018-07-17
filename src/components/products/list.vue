@@ -29,6 +29,7 @@
                     name: product.name,
                     description: product.description,
                     date: date,
+                    quantity:1,
                     price: parseInt(product.price),
                     category_id: product.category,
                     img: product.img

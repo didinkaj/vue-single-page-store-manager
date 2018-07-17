@@ -45,7 +45,10 @@ const router = new Router({
       {
         path:'/products/edit/:id',
           name:'productsedit_route',
-          component:ProductsEdit
+          component:ProductsEdit,
+          meta:{
+              requiresAuth:true
+          }
       },
       {
           path:'/products/detail/:id',

@@ -12,18 +12,22 @@
         },
         computed: {
         ...mapGetters({
-            products:'products'
+            products:'products',
+            cartItemsNo:'cartItemsNo'
         })
         },
         methods:{
         addToCart(product){
             const date = new Date()
+            let id = this.cartItemsNo + 1
             let newProduct = {
-                id: product.id,
+                id: id,
+                product_id: product.id,
                 user_id:1,
                 name: product.name,
                 description: product.description,
                 date: date,
+                quantity:1,
                 price: parseInt(product.price),
                 category_id: product.category,
                 img: product.img
@@ -95,12 +99,13 @@
                     </el-dropdown>
 
                         <div class="product-desc" style="padding: 14px;">
-                            <div class="product-name" >{{product.name}} : <span class="product-price">$ {{product.price}}</span></div>
+                            <div class="product-name" >{{product.name}} : <span class="product-price">$ {{product.price}}</span>
+                            </div>
                             <div class="bottom clearfix">
                                 <time class="product-info">
                                     {{product.description}}
                                 </time>
-
+                                <p>Stock: <span class="product-price">{{product.quantity}} </span>Remaining</p>
                             </div>
                         </div>
                     <el-button type="primary pull-right" icon="el-icon-sold-out" @click="addToCart(product)"> Order</el-button>
