@@ -13,6 +13,7 @@ import UserProducts from '@/components/users/products'
 import UserCart from '@/components/users/cart'
 import UserLogin from '@/components/users/login'
 import UserRegister from '@/components/users/register'
+import CheckOut from '@/components/users/checkout'
 import firebase from 'firebase'
 
 
@@ -36,10 +37,13 @@ const router = new Router({
       {
         path:'/products/add',
           name:'productsadd_route',
-          component:AddProducts
+          component:AddProducts,
+          meta:{
+              requiresAuth:true
+          }
       },
       {
-        path:'/products/edit',
+        path:'/products/edit/:id',
           name:'productsedit_route',
           component:ProductsEdit
       },
@@ -56,7 +60,10 @@ const router = new Router({
       {
         path:'/products/categories/add',
           name:'productscategoriesadd_route',
-          component:ProductCategoriesAdd
+          component:ProductCategoriesAdd,
+          meta:{
+              requiresAuth:true
+          }
       },{
         path:'/products/categories/details',
           name:'productscategoriesdetails_route',
@@ -75,10 +82,7 @@ const router = new Router({
       {
           path:'/user/cart',
           name:'usercart_route',
-          component:UserCart,
-          meta:{
-              requiresAuth:true
-          }
+          component:UserCart
       },
       {
           path:'/user/login',
@@ -89,6 +93,14 @@ const router = new Router({
           path:'/user/register',
           name:'userregister_route',
           component:UserRegister
+      },
+      {
+          path:'/user/checkout',
+          name:'userCheckout_route',
+          component:CheckOut,
+          meta:{
+              requiresAuth:true,
+          }
       }
   ],
     mode:'history'

@@ -107,10 +107,14 @@
                 <el-col :span="12">
                     &nbsp;
                 </el-col>
-                <el-col :span="10" class="price-div">
+                <el-col :span="5" class="price-div">
                     <router-link :to="{name:'productslist_route'}">
-                        <el-button type="default pull-right pull-right-margin">Continue Shopping</el-button>
-                        <el-button type="success pull-right pull-right-margin">Check Out</el-button>
+                        <el-button type="default pull-right ">Continue Shopping</el-button>
+                    </router-link>
+                </el-col>
+                <el-col :span="5">
+                    <router-link :to="{name:'userCheckout_route'}">
+                        <el-button type="success pull-right pull-right-margin-checkout">Check Out</el-button>
                     </router-link>
                 </el-col>
             </el-row>
@@ -128,7 +132,7 @@
     }
 
     .pull-right-margin {
-       margin-right: 70px;
+       margin-right: 80px;
     }
     .total-price{
         color: green;

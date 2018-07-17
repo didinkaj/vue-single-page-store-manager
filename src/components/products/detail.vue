@@ -60,8 +60,9 @@
                     type: 'success'
                 });
             },
-            editProduct(){
-                return this.$router.push( '/products/edit')
+            editProduct(product_id){
+             console.log(product_id);
+                return this.$router.push({ name: 'productsedit_route', params: { id: product_id }})
             }
 
         },
@@ -87,7 +88,7 @@
                             <el-dropdown-item><a href="#" class="link-product"  @click = "deleteProduct(product)">
                                 <i class="el-icon-delete red-icon"></i>  Delete
                             </a></el-dropdown-item>
-                            <el-dropdown-item><a href="#"  @click = "editProduct()" class="link-product" >
+                            <el-dropdown-item><a href="#"  @click = "editProduct(product.id)" class="link-product" >
                                 <i class="el-icon-edit"></i> Edit
                             </a></el-dropdown-item>
                         </el-dropdown-menu>
