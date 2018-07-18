@@ -39,13 +39,16 @@
             },
             addToCart(product){
                 const date = new Date()
+                let id = this.cartItemsNo + 1
                 let newProduct = {
-                    id: product.id,
+                    id:id,
+                    product_id: product.id,
                     user_id:1,
                     name: product.name,
                     description: product.description,
                     date: date,
-                    price: product.price,
+                    quantity:1,
+                    price: parseInt(product.price),
                     category_id: product.category,
                     img: product.img
                 }
