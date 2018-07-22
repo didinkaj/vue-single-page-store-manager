@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 const state = {
-    loggedinUser:[],
+    loggedinUser:'',
 
     users: [{
         id:1,
@@ -62,16 +62,13 @@ const getters = {
 const mutations = {
     SETLOGGEDIN_USER(state,userInfo){
         state.loggedinUser=userInfo;
-
-
-
-    }
+    },
+ 
 };
 
 
 
 const actions = {
-
     getUser(store){
         var user = firebase.auth().currentUser;
         if (user != null) {

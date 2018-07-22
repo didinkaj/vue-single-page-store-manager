@@ -6,7 +6,9 @@
         },
         data() {
             return {
-                currentDate: new Date()
+                currentDate: new Date(),
+                orderbtn:true,
+                removebtn:false,
             };
         },
         computed:{
@@ -35,6 +37,7 @@
                     img: product.img
                 }
                 console.log('item added'+newProduct)
+
                 this.$store.commit('ADD_CART_PRODUCT', newProduct)
                 this.saveSuccess();
 
@@ -45,6 +48,18 @@
                     message: 'Product added successfully',
                     type: 'success'
                 });
+            },
+            deleteSuccess() {
+                this.$notify({
+                    title: 'Success',
+                    message: 'Product Removed from cart successfully',
+                    type: 'success'
+                });
+            },
+            removeItem(item) {
+                console.log('item removed' + item)
+                this.$store.commit('DELETE_CART_PRODUCT', item)
+                this.deleteSuccess();
             }
         }
     }
@@ -53,7 +68,7 @@
     <div >
 
         <el-row >
-            <el-col :span="7" v-for="product in products" :key="product.id" :offset="product > 0 ? 1 : 1" class="product">
+            <el-col :span="7" v-for="product in products" :key="product.id"   :offset="product > 0 ? 1 : 1" class="product">
                 <el-card :body-style="{ padding: '0px' }">
                     <!--:src="product.img"-->
                     <router-link :to="{name:'productsdetail_route', params:{id:product.id}}">
@@ -64,11 +79,11 @@
                             <time class="product-info">
                                {{product.description}}
                             </time>
-
                         </div>
                     </div>
                     </router-link>
-                    <el-button type="primary pull-right" icon="el-icon-sold-out" @click="addToCart(product)"> Order</el-button>
+                    <el-button type="primary pull-right" v-show="orderbtn" icon="el-icon-sold-out" @click="addToCart(product)"> Order</el-button>
+                    <el-button type="danger pull-right" v-show="removebtn" icon="el-icon-sold-out" @click="removeItem(product)"> Remove</el-button>
                 </el-card>
 
             </el-col>

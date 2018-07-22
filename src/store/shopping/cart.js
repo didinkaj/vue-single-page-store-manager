@@ -52,13 +52,30 @@ const mutations = {
         if(!record){
             state.cartItems.unshift(data)
         }else{
-            record.quantity++
+            if(record.quantity<10){
+                record.quantity++
+            }
+
         }
 
     },
     DELETE_CART_PRODUCT(state, data){
         state.cartItems.splice( state.cartItems.indexOf(data), 1 );
-    }
+    },
+    DECREASE_CART_PRODUCT(state, data){
+        const record = state.cartItems.find(product => product.id === data.product_id)
+        if(!record){
+            //state.cartItems.unshift(data)
+        }else{
+            if(record.quantity>1){
+                record.quantity--
+            }else{
+                state.cartItems.splice( state.cartItems.indexOf(data), 1 );
+            }
+
+        }
+
+    },
 };
 
 const actions = {};

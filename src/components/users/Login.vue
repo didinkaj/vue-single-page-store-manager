@@ -71,8 +71,8 @@
                     </el-form-item>
                 </el-form>
                 <el-row>
-                    <el-col :span="5" :offset="10">
-                        <router-link :to ="{name:'userregister_route'}" id="register" > <p>Register</p></router-link>
+                    <el-col :span="10" :offset="10">
+                        <router-link :to ="{name:'userregister_route'}" id="register" > <p>Creare an account Here</p></router-link>
                     </el-col>
                 </el-row>
             </el-card>

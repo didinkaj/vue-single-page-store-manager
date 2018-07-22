@@ -7,18 +7,29 @@
                 activeIndex: '1',
                 activeIndex2: '1',
                 input4: '',
+                search:''
             };
         },
         methods: {
             handleSelect(key, keyPath) {
-                console.log(key, keyPath);
-            }
+              //  console.log(key, keyPath);
+                console.log(this.loggedinUser);
+            },
+            searchProduct(){
+                console.log(this.search)
+            },
+
         },
         computed:{
             ...mapGetters({
                 users:'users',
                 loggedinUser:'loggedinUser'
-            })
+            }),
+            user(){
+                this.$root.$on('removeposition', filter => {
+                    console.log("mmm")
+                })
+            }
         },
 
 
@@ -48,12 +59,13 @@
                     <router-link :to="{name:'productscategoriesdetails_route'}">View Categories</router-link>
                 </el-menu-item>
             </el-submenu>
-            <el-menu-item index="3" class="search">
-                search
+            <el-menu-item index="3" class="search" >
+                <el-input suffix-icon="el-icon-search" placeholder="Search ..." v-model="search" class="find" v-on:keyup.enter="seamrchProduct">
+                </el-input>
             </el-menu-item>
             <router-link :to="{name:'userlogin_route'}">
                 <el-menu-item index="3" class="search">
-                    {{loggedinUser.user }}
+                    Johnson Didinya {{loggedinUser }}
                 </el-menu-item>
             </router-link>
 
@@ -71,6 +83,13 @@
         color: #FFFFFF;
         text-decoration: none;
         display: block;
+    }
+    .search input{
+        background-color: #123456;
+        border-color: #123456;
+        color:#ffff00;
+        font-size: 16px;
+        width: 300px;
     }
 
 

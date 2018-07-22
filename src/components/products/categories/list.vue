@@ -1,8 +1,13 @@
 <script>
     import {mapState, mapGetters, mapMutations} from 'vuex'
+    import ElRow from "element-ui/packages/row/src/row";
+    import ElCol from "element-ui/packages/col/src/col";
 
 
     export default {
+        components: {
+            ElCol,
+            ElRow},
         name: 'productscategory_route',
         data() {
             return {
@@ -78,7 +83,7 @@
 </script>
 <template>
     <div>
-        <el-row>
+        <el-row v-if="product.length">
             <el-col :span="7" v-for="product in product" :key="product.id" :offset="product > 0 ? 1 : 1" class="product">
                 <el-card :body-style="{ padding: '0px' }">
                     <!--:src="product.img"-->
@@ -98,6 +103,11 @@
                 </el-card>
 
             </el-col>
+        </el-row>
+        <el-row v-else>
+                <el-col>
+                    <p>Products in this category will be added soon</p>
+                </el-col>
         </el-row>
 
     </div>

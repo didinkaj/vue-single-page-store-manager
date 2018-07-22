@@ -111,7 +111,6 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     let currentUser = firebase.auth().currentUser;
-console.log("firebasedata",currentUser);
 if (to.matched.some(record => record.meta.requiresAuth)){
 
     if (!currentUser) {

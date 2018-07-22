@@ -11,7 +11,8 @@
         data() {
             return {
                 itemsInCart: [],
-                totalAmount:'mmm'
+                totalAmount:'mmm',
+                itemquantity : ''
             }
         },
         computed: {
@@ -43,6 +44,35 @@
                 this.$notify({
                     title: 'Success',
                     message: 'Product Removed from cart successfully',
+                    type: 'success'
+                });
+            },
+            handleChange(product,value){
+                console.log(value)
+                const date = new Date()
+                let id = this.cartItemsNo + 1
+                let newProduct = {
+                    id:id,
+                    product_id: product.id,
+                    user_id:1,
+                    name: product.name,
+                    description: product.description,
+                    date: date,
+                    quantity:1,
+                    price: parseInt(product.price),
+                    category_id: product.category,
+                    img: product.img
+                }
+                console.log('item added'+newProduct)
+
+                this.$store.commit('ADD_CART_PRODUCT', newProduct)
+                this.saveSuccess();
+
+            },
+            saveSuccess() {
+                this.$notify({
+                    title: 'Success',
+                    message: 'quantity increased successfully',
                     type: 'success'
                 });
             },
@@ -95,6 +125,7 @@
                             </div>
                         </div>
                     </el-col>
+                    <el-input-number  :value="parseInt(product.quantity)"  @change="handleChange(product)" :min="1" :max="10"></el-input-number>
                     <el-button type="danger pull-right" icon="el-icon-sold-out" @click="removeItem(product)"> Remove
                     </el-button>
                 </el-card>
