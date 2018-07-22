@@ -1,8 +1,8 @@
 <script>
-    import SideBarLeft from '@/components/layouts/sidebar/left'
-    import SideBarRight from '@/components/layouts/sidebar/right'
-    import HeaderNav from '@/components/layouts/header'
-    import PageFooter from '@/components/layouts/footer'
+    import SideBarLeft from '@/components/layouts/sidebar/Left'
+    import SideBarRight from '@/components/layouts/sidebar/Right'
+    import HeaderNav from '@/components/layouts/Header'
+    import PageFooter from '@/components/layouts/Footer'
     import ElCol from "element-ui/packages/col/src/col";
     import ElFooter from "../../node_modules/element-ui/packages/footer/src/main.vue";
 
