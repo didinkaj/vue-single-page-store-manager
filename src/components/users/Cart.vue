@@ -80,7 +80,7 @@
 
                 console.log('item removed' + this.itemsInCart)
                 this.$store.commit('EMPTY_CART')
-                this.$router.push({name:'productslist_route'})
+                this.$router.push({name:'usercart_route'})
                 //this.deleteSuccess();
 
             }
