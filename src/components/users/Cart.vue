@@ -77,12 +77,9 @@
                 });
             },
             checkOut(){
-
                 console.log('item removed' + this.itemsInCart)
                 this.$store.commit('EMPTY_CART')
                 this.$router.push({name:'userCheckout_route'})
-                //this.deleteSuccess();
-
             }
 
         },
