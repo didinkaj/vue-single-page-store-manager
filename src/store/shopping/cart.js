@@ -62,6 +62,10 @@ const mutations = {
     DELETE_CART_PRODUCT(state, data){
         state.cartItems.splice( state.cartItems.indexOf(data), 1 );
     },
+    EMPTY_CART(state) {
+        while (state.cartItems.length) { state.cartItems.pop(); }
+        console.log("items deleted")
+    },
     DECREASE_CART_PRODUCT(state, data){
         const record = state.cartItems.find(product => product.id === data.product_id)
         if(!record){

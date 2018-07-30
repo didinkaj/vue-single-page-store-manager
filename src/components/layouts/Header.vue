@@ -65,7 +65,7 @@
             </el-menu-item>
             <router-link :to="{name:'userlogin_route'}">
                 <el-menu-item index="3" class="search">
-                    Johnson Didinya {{loggedinUser }}
+                    Account {{loggedinUser }}
                 </el-menu-item>
             </router-link>
 

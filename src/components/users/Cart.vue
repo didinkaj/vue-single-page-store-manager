@@ -76,6 +76,14 @@
                     type: 'success'
                 });
             },
+            checkOut(){
+
+                console.log('item removed' + this.itemsInCart)
+                this.$store.commit('EMPTY_CART')
+                this.$router.push({name:'productslist_route'})
+                //this.deleteSuccess();
+
+            }
 
         },
         created() {
@@ -140,13 +148,13 @@
                 </el-col>
                 <el-col :span="5" class="price-div">
                     <router-link :to="{name:'productslist_route'}">
-                        <el-button type="default pull-right ">Continue Shopping</el-button>
+                        <el-button type="default pull-right " >Continue Shopping</el-button>
                     </router-link>
                 </el-col>
                 <el-col :span="5">
-                    <router-link :to="{name:'userCheckout_route'}">
-                        <el-button type="success pull-right pull-right-margin-checkout">Check Out</el-button>
-                    </router-link>
+
+                        <el-button @click.prevent="checkOut" type="success pull-right pull-right-margin-checkout">Check Out</el-button>
+
                 </el-col>
             </el-row>
 
