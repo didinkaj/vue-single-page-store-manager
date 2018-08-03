@@ -1,5 +1,6 @@
 <script>
     import {mapGetters, mapActions} from 'vuex'
+    import firebaseUser from 'firebase'
     export default {
         name: 'headernav',
         data() {
@@ -31,6 +32,11 @@
                 })
             }
         },
+        created(){
+
+
+
+        }
 
 
 

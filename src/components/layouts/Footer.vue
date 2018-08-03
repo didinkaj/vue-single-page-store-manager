@@ -2,6 +2,9 @@
     import ElRow from "element-ui/packages/row/src/row";
 
     export default {
+        props:[
+            'footerTitle'
+        ],
         components: {ElRow},
         data() {
             return {
@@ -14,7 +17,7 @@
 
 <template>
     <el-row class="footer">
-        <h5>By johnson didinya  &copy; {{copy}}</h5>
+        <h5>{{ footerTitle }}   &copy; {{copy}}</h5>
     </el-row>
 
 

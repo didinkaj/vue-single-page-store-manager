@@ -39,7 +39,7 @@
                 console.log('item added'+newProduct)
 
                 this.$store.commit('ADD_CART_PRODUCT', newProduct)
-                this.saveSuccess();
+                this.success("Product added successfully");
 
             },
             saveSuccess() {

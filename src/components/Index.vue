@@ -16,7 +16,9 @@
             'page-footer': PageFooter,
         },
         data() {
-            return {}
+            return {
+                footerTitle:"By johnson didinya"
+            }
         }
     };
 </script>
@@ -40,7 +42,7 @@
             </el-col>
         </el-main>
         <el-footer>
-            <page-footer></page-footer>
+            <page-footer :footerTitle="footerTitle"></page-footer>
         </el-footer>
     </el-container>
 </template>

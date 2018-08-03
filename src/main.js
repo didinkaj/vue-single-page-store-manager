@@ -7,6 +7,7 @@ import locale from 'element-ui/lib/locale/lang/en';
 import 'element-ui/lib/theme-chalk/index.css';
 import router from './router'
 import store from './store/store'
+import mixin from './mixins/myMixins'
 import firebase from 'firebase'
 import './firebaseconfig'
 
@@ -20,6 +21,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             el: '#app',
             router,
             store,
+            mixins:[mixin],
             template: '<App/>',
             components: { App }
         });
