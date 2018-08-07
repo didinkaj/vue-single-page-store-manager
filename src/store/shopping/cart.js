@@ -2,7 +2,7 @@ const state = {
 
     cartItems: [{
         id:1,
-        product_id:'1',
+        product_id:3,
         user_id:1,
         name: 'Laptops:',
         description: ' HP EliteBook Folio 1020 G1 - 12.5" - Core m5 6th gen - 8 GB RAM - 256 GB SSD -silver-free dos-free laptop bag',
@@ -14,7 +14,7 @@ const state = {
     },
         {
             id:2,
-            product_id:'1',
+            product_id:5,
             user_id:1,
             name: 'Laptops:',
             description: ' HP EliteBook Folio 1020 G1 - 12.5" - Core m5 6th gen - 8 GB RAM - 256 GB SSD -silver-free dos-free laptop bag',
@@ -26,7 +26,7 @@ const state = {
         },
         {
             id:3,
-            product_id:'1',
+            product_id:1,
             user_id:1,
             name: 'Laptops:',
             description: ' HP EliteBook Folio 1020 G1 - 12.5" - Core m5 6th gen - 8 GB RAM - 256 GB SSD -silver-free dos-free laptop bag',

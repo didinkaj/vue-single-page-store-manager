@@ -10,9 +10,12 @@ import store from './store/store'
 import mixin from './mixins/myMixins'
 import firebase from 'firebase'
 import './firebaseconfig'
+import InstantSearch from 'vue-instantsearch';
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, { locale });
+Vue.use(InstantSearch);
+
 let app;
 firebase.auth().onAuthStateChanged(function(user) {
     if (!app) {
@@ -22,8 +25,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             router,
             store,
             mixins:[mixin],
-            template: '<App/>',
-            components: { App }
+            render: h => h(App)
         });
     }
 });

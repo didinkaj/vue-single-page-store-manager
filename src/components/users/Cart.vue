@@ -130,7 +130,8 @@
                             </div>
                         </div>
                     </el-col>
-                    <el-input-number  :value="parseInt(product.quantity)"  @change="handleChange(product)" :min="1" :max="10"></el-input-number>
+                    <!--<el-input-number  :value="parseInt(product.quantity)"  @change="handleChange(product)" :min="1" :max="10"></el-input-number>-->
+                    <el-input-number  :value="parseInt(product.quantity)"  @change="handleChange(value, product)" :min="1" :max="10"></el-input-number>
                     <el-button type="danger pull-right" icon="el-icon-sold-out" @click="removeItem(product)"> Remove
                     </el-button>
                 </el-card>

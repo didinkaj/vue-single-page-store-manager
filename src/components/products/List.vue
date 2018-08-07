@@ -1,6 +1,9 @@
 <script>
     import {mapState,mapGetters} from 'vuex'
+    import mixin from '../../mixins/myMixins'
+
     export default {
+        mixins:[mixin],
         name: 'products_route',
         components: {
         },
@@ -8,7 +11,8 @@
             return {
                 currentDate: new Date(),
                 orderbtn:true,
-                removebtn:false,
+                removebtn:true,
+                productAdded: {}
             };
         },
         computed:{
@@ -17,8 +21,18 @@
             }),
             ...mapGetters({
                 products:'products',
+                cartItems: 'cartItems',
                 cartItemsNo:'cartItemsNo'
             })
+        },
+
+        watch: {
+            cartItems: {
+                handler: function () {
+                    console.log(this.cartItems, "cart items");
+                    this.added(this.productAdded);
+                }
+            }
         },
         methods:{
             addToCart(product){
@@ -35,19 +49,14 @@
                     price: parseInt(product.price),
                     category_id: product.category,
                     img: product.img
-                }
-                console.log('item added'+newProduct)
+                };
 
-                this.$store.commit('ADD_CART_PRODUCT', newProduct)
-                this.success("Product added successfully");
+                console.log('item added'+newProduct);
 
-            },
-            saveSuccess() {
-                this.$notify({
-                    title: 'Success',
-                    message: 'Product added successfully',
-                    type: 'success'
-                });
+                this.productAdded = newProduct;
+
+                this.$store.commit('ADD_CART_PRODUCT', newProduct);
+                this.success("Product added to cart successfully");
             },
             deleteSuccess() {
                 this.$notify({
@@ -60,7 +69,18 @@
                 console.log('item removed' + item)
                 this.$store.commit('DELETE_CART_PRODUCT', item)
                 this.deleteSuccess();
-            }
+
+            },
+            added(product) {
+                let index = this.cartItems.find( (item) => {
+                    return item.product_id == product.id;
+                });
+
+                if(index) {
+                    return true;
+                }
+                return false;
+            },
         }
     }
 </script>
@@ -77,13 +97,15 @@
                         <div class="product-name" >{{product.name}} : <span class="product-price">$ {{product.price}}</span></div>
                         <div class="bottom clearfix">
                             <time class="product-info">
-                               {{product.description}}
+                               {{product.description}} - {{added(product)}} {{product.id}}
                             </time>
                         </div>
                     </div>
                     </router-link>
-                    <el-button type="primary pull-right" v-show="orderbtn" icon="el-icon-sold-out" @click="addToCart(product)"> Order</el-button>
-                    <el-button type="danger pull-right" v-show="removebtn" icon="el-icon-sold-out" @click="removeItem(product)"> Remove</el-button>
+
+
+                    <el-button type="primary pull-right" icon="el-icon-sold-out" v-show="!added(product)" @click="addToCart(product)" > Order</el-button>
+                    <el-button type="danger pull-right" icon="el-icon-sold-out" v-show="added(product)" @click="removeItem(product)" > Remove</el-button>
                 </el-card>
 
             </el-col>

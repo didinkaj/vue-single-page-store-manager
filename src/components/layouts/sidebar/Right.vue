@@ -60,7 +60,7 @@
                     </router-link>
                     <router-link :to="{name:'userproducts_route'}">
                     <el-menu-item index="2">
-                        <i class="el-icon-document"></i>
+                        <i class="el-icon-star-on"></i>
                         <span>My Products</span>
                     </el-menu-item>
                     </router-link>

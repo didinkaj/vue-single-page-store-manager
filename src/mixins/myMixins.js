@@ -1,6 +1,6 @@
 const myMixin = {
     created(){
-        console.log("Welcome aboard")
+        console.log("This is a message from a mixins")
     },
     methods:{
         success:function(msg) {
