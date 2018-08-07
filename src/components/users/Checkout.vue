@@ -16,7 +16,7 @@
 <template>
     <div>
         <el-row>
-            <el-col :span="24">
+            <el-col :span="22">
                 <el-card class="checkout">
                     <el-steps :active="4" align-center>
                         <el-step title="Step 1" description="Shopping Cart"></el-step>
