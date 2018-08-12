@@ -12,10 +12,16 @@ import Myfilters from './filters/allFilter'
 import firebase from 'firebase'
 import './firebaseconfig'
 import InstantSearch from 'vue-instantsearch';
+import VueProgressBar from 'vue-progressbar'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, {locale});
 Vue.use(InstantSearch);
+Vue.use(VueProgressBar, {
+    color: 'rgb(255,255,0)',
+    failedColor: 'yellow',
+    height: '4px'
+})
 for (let name in Myfilters) {
     Vue.filter(name, Myfilters[name]);
 }

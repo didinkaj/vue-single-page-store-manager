@@ -3,6 +3,9 @@
         name: 'userproducts_route',
         data() {
             return {}
+        },
+        created(){
+            this.$Progress.start(40)
         }
     }
 

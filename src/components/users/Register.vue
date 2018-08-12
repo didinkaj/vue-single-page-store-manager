@@ -16,11 +16,41 @@
         },
         methods: {
             onSubmit() {
+                this.$Progress.start()
                 firebase.auth().createUserWithEmailAndPassword(this.registerForm.email, this.registerForm.password)
                     .then((user) => {
                         console.log(user);
-                    })
+                        firebase.auth().signInWithEmailAndPassword(this.registerForm.email, this.registerForm.password)
+                            .then((resp) => {
+                                console.log(JSON.stringify(resp.user.email));
+                                this.$store.commit('SETLOGGEDIN_USER', resp.user.email)
+                                this.saveSuccess(resp.user.email);
+                                this.$Progress.end()
+                                this.$router.push('/');
+
+                            }).catch(error => {
+                            this.saveError(error.message);
+                        })
+                    }).catch(error => {
+                    this.saveError(error.message);
+                })
+            },
+            saveSuccess(user) {
+                this.$notify({
+                    title: 'Success',
+                    message: 'Welcome ' + user,
+                    type: 'success'
+                });
+            },
+            saveError(message) {
+                this.$notify.error({
+                    title: 'Error',
+                    message: message
+                });
             }
+        },
+        created(){
+            this.$Progress.start(40)
         }
     }
 

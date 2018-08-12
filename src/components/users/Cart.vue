@@ -92,6 +92,7 @@
         },
         created() {
             this.getCartItems();
+            this.$Progress.start(40)
         },
         watch: {
             itemsInCarts: function (val) {

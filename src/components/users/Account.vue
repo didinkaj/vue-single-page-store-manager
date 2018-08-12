@@ -11,6 +11,9 @@
                 users: 'users',
                 loggedinUser: 'loggedinUser'
             }),
+        },
+        created(){
+            this.$Progress.start(40)
         }
     }
 

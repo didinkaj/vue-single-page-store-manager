@@ -79,6 +79,8 @@
         },
         created() {
             this.getProductNO();
+            this.$Progress.start(40)
+
         },
         watch: {}
     }

@@ -81,6 +81,7 @@
         watch: {},
         created() {
             this.getAddress();
+            this.$Progress.start(40)
         }
     }
 </script>

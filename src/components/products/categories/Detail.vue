@@ -44,6 +44,9 @@
         },
         mounted() {
 
+        },
+        created(){
+            this.$Progress.start(40)
         }
     }
 </script>

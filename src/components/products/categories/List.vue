@@ -94,6 +94,7 @@
         watch: {
             '$route'(to, from) {
                 this.filterProducts();
+                this.$Progress.start(40)
             },
             productsInStock:function() {
                 this.productsInStock = this.products
@@ -106,6 +107,7 @@
         created(){
             this.getProducts()
             this.filterProducts();
+            this.$Progress.start(40)
         }
     }
 </script>

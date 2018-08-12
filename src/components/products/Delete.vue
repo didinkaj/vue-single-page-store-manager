@@ -12,8 +12,9 @@
         }, computed: {},
         methods: {},
         mounted() {
-
-
+        },
+        created(){
+            this.$Progress.start(40)
         }
     }
 

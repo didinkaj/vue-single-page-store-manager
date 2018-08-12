@@ -41,6 +41,9 @@
                     message: 'Error ensure all the fields are filled'
                 });
             }
+        },
+        created(){
+            this.$Progress.start(40)
         }
     }
 </script>

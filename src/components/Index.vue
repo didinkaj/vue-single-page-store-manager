@@ -19,6 +19,9 @@
             return {
                 footerTitle: "By johnson didinya"
             }
+        },
+        created(){
+            this.$Progress.start(40)
         }
     };
 </script>
@@ -33,9 +36,10 @@
             </el-col>
 
             <el-col :span="15" class="main-content" :offset="5">
-                <el-collapse-transition>
+                <vue-progress-bar></vue-progress-bar>
+                <!--<el-collapse-transition>-->
                     <router-view></router-view>
-                </el-collapse-transition>
+                <!--</el-collapse-transition>-->
             </el-col>
             <el-col :span="4" class="cart" :offset="19">
                 <side-bar-right></side-bar-right>

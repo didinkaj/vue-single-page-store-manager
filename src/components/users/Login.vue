@@ -21,19 +21,19 @@
         },
         methods: {
             onSubmit() {
-
+                this.$Progress.start()
                 firebase.auth().signInWithEmailAndPassword(this.loginForm.email, this.loginForm.password)
                     .then((resp) => {
                         console.log(JSON.stringify(resp.user.email));
                         this.$store.commit('SETLOGGEDIN_USER',resp.user.email)
                         this.saveSuccess(resp.user.email);
                         this.$router.push('/');
+                        this.$Progress.finish()
 
                     }).catch(error => {
-                    //console.log(error.message);
+                    this.$Progress.finish()
                     this.saveError(error.message);
                 })
-                //console.log('submitted')
             },
             saveSuccess(user) {
                 this.$notify({
@@ -48,6 +48,9 @@
                     message: message
                 });
             }
+        },
+        created(){
+            this.$Progress.start(40)
         }
     }
 
