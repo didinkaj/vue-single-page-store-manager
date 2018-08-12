@@ -113,7 +113,7 @@
                         <delete-component :dialogVisible="dialogVisible" >
                                <div slot="content">
                                    <div class="product-name" >
-                                       {{product.name}} : <span class="product-price">$ {{product.price}}</span>
+                                       {{product.name}} : <span class="product-price"> {{product.price | toUssd}}</span>
                                    </div>
                                </div>
                             <div slot="footer" >

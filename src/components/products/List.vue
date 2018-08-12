@@ -88,10 +88,10 @@
                     <router-link :to="{name:'productsdetail_route', params:{id:product.id}}">
                     <img class="img-product"  src="../../assets/laptop.jpg">
                     <div class="product-desc" style="padding: 14px;">
-                        <div class="product-name" >{{product.name}} : <span class="product-price">$ {{product.price}}</span></div>
+                        <div class="product-name" >{{product.name}} : <span class="product-price"> {{product.price | toUssd}}</span></div>
                         <div class="bottom clearfix">
                             <time class="product-info">
-                               {{product.description}}
+                               {{product.description | readMore(120,'...')}}
                             </time>
                         </div>
                     </div>

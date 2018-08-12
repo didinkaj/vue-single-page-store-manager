@@ -89,11 +89,6 @@
                 this.itemsInCart = this.cartItems
             },
 
-        },
-        filters:{
-            priceWithComma (x) {
-                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            }
         }
     }
 
@@ -118,11 +113,11 @@
                     </el-col>
                     <el-col :span="18">
                         <div class="product-desc" style="padding: 14px;">
-                            <div class="product-name-incart"><span class="product-price">{{product.quantity}}</span>&nbsp;{{product.name}} : <span
-                                    class="product-price">$ {{product.price}}   </span></div>
+                            <div class="product-name-incart"><span class="product-price">{{product.quantity}}</span>&nbsp;{{product.name}} @ <span
+                                    class="product-price"> {{product.price | toUssd}}   </span></div>
                             <div class="bottom clearfix">
                                 <time class="product-info">
-                                    {{product.description}}
+                                    {{product.description | readMore(1000,'...') }}
                                 </time>
 
                             </div>

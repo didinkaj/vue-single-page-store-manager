@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import router from './router'
 import store from './store/store'
 import mixin from './mixins/myMixins'
+import Myfilters from './filters/allFilter'
 import firebase from 'firebase'
 import './firebaseconfig'
 import InstantSearch from 'vue-instantsearch';
@@ -15,6 +16,9 @@ import InstantSearch from 'vue-instantsearch';
 Vue.config.productionTip = false
 Vue.use(ElementUI, { locale });
 Vue.use(InstantSearch);
+for(let name in Myfilters) {
+    Vue.filter(name, Myfilters[name]);
+}
 
 let app;
 firebase.auth().onAuthStateChanged(function(user) {
