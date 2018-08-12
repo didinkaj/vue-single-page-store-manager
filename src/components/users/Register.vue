@@ -33,6 +33,7 @@
                         })
                     }).catch(error => {
                     this.saveError(error.message);
+                    this.$Progress.finish()
                 })
             },
             saveSuccess(user) {
