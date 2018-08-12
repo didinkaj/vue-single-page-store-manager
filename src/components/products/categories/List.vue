@@ -14,6 +14,7 @@
             return {
                 productsFiltered: [],
                 route_id: this.$route.params.id,
+                productsInStock : []
             }
         },
         computed: {
@@ -24,13 +25,15 @@
             })
         },
         methods: {
+            getProducts(){
+                this.productsInStock = this.products
+            },
             filterProducts() {
                 let id = this.$route.params.id;
-                let product = this.products.filter(product => product.category_id == id);
-                this.productsFiltered = product;
+                let allProducts = this.productsInStock.filter(product => product.category_id == id);
+                this.productsFiltered = allProducts;
             },
             deleteProduct(product) {
-                console.log(product)
                 this.$store.commit('SHOPING_REMOVE_PRODUCT_FROM_CART', product)
                 this.deleteSuccess();
                 return this.$router.push('/')
@@ -60,7 +63,6 @@
                     category_id: product.category,
                     img: product.img
                 }
-                console.log('item added' + newProduct)
                 this.$store.commit('SHOPING_ADD_NEW_PRODUCT_TO_CART', newProduct)
                 this.saveSuccess();
 
@@ -89,14 +91,21 @@
 
             },
         },
-        mounted() {
-            this.filterProducts();
-            console.log('hhhh')
-        },
         watch: {
             '$route'(to, from) {
                 this.filterProducts();
+            },
+            productsInStock:function() {
+                this.productsInStock = this.products
             }
+
+        },
+        mounted() {
+
+        },
+        created(){
+            this.getProducts()
+            this.filterProducts();
         }
     }
 </script>

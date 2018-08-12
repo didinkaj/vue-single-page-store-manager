@@ -12,7 +12,8 @@
         },
         computed: {
             ...mapGetters({
-                cartItemsNo: 'cartItemsNo'
+                cartItemsNo: 'cartItemsNo',
+                loggedinUser: 'loggedinUser'
             })
         },
         methods: {
@@ -30,8 +31,14 @@
                 firebase.auth().signOut().then(() => {
                     this.$router.push('user/login');
                 })
+                this.$store.commit('UNSET_LOGGEDIN_USER')
 
+            },
+        isLoggedIn(){
+            if(this.loggedinUser == ""){
+                return true;
             }
+        }
         },
         created() {
             this.cartDetails();
@@ -71,12 +78,18 @@
                             <span>Cart <span class="item-in-cart">({{itemsInCart}})</span></span>
                         </el-menu-item>
                     </router-link>
-                    <!--<router-link :to="{name:'userlogin_route'}">-->
+                    <router-link :to="{name:'userlogin_route'}" v-show="isLoggedIn()">
+                    <el-menu-item @click="logout()" index="4">
+                        <i class="el-icon-setting"></i>
+                        <span>Log In</span>
+                    </el-menu-item>
+                    </router-link>
+                    <router-link :to="{name:'userlogin_route'}" v-show="!isLoggedIn()">
                     <el-menu-item @click="logout()" index="4">
                         <i class="el-icon-setting"></i>
                         <span>Log Out</span>
                     </el-menu-item>
-                    <!--</router-link>-->
+                    </router-link>
                 </el-menu>
             </el-col>
 

@@ -38,7 +38,6 @@
         methods: {
             saveToStore() {
                 this.$store.commit('ADD_ADDRESS', this.inputAddress)
-                console.log('saving', this.inputAddress)
             },
             next() {
                 if (this.active++ > 2) this.active = 0;
@@ -82,7 +81,6 @@
         watch: {},
         created() {
             this.getAddress();
-            console.log(this.address, 'nnnn')
         }
     }
 </script>

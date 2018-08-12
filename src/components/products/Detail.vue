@@ -41,7 +41,6 @@
                     category_id: product.category,
                     img: product.img
                 }
-                console.log('item added' + newProduct)
                 this.$store.commit('SHOPING_ADD_NEW_PRODUCT_TO_CART', newProduct)
                 this.saveSuccess();
 
@@ -50,7 +49,6 @@
                 let id = this.$route.params.id;
                 let product = this.products.filter(product => product.id == id);
                 this.product = product;
-                console.log(product)
             },
             deleteProduct(product) {
                 this.$store.commit('DELETE_PRODUCT', product)
@@ -78,7 +76,6 @@
                 });
             },
             editProduct(product_id) {
-                console.log(product_id);
                 return this.$router.push({name: 'productsedit_route', params: {id: product_id}})
             },
             added(id) {

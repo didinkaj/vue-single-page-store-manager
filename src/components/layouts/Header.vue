@@ -20,6 +20,11 @@
             searchProduct() {
                 console.log(this.search)
             },
+            isLoggedIn(){
+                if(this.loggedinUser == ""){
+                    return true;
+                }
+            }
 
         },
         computed: {
@@ -34,7 +39,8 @@
             }
         },
         created() {
-
+        this.$store.dispatch('getUser');
+        console.log('active user',this.loggedinUser)
 
         }
 
@@ -71,9 +77,14 @@
                           v-on:keyup.enter="seamrchProduct">
                 </el-input>
             </el-menu-item>
-            <router-link :to="{name:'userlogin_route'}">
+            <router-link :to="{name:'userlogin_route'}" v-show="isLoggedIn()">
                 <el-menu-item index="3" class="search">
-                    Account {{loggedinUser }}
+                    <span> Account</span>
+                </el-menu-item>
+            </router-link>
+            <router-link :to="{name:'useraccount_route'}" v-show="!isLoggedIn()">
+                <el-menu-item index="3" class="search">
+                    {{loggedinUser }}
                 </el-menu-item>
             </router-link>
 

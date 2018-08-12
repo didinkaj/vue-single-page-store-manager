@@ -39,7 +39,6 @@
                 this.itemsInCart = this.cartItems
             },
             removeItem(item) {
-                console.log('item removed' + item)
                 this.$store.commit('DELETE_CART_PRODUCT', item)
                 this.deleteSuccess();
             },

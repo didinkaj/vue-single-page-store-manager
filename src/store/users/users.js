@@ -64,6 +64,9 @@ const mutations = {
     SETLOGGEDIN_USER(state, userInfo) {
         state.loggedinUser = userInfo;
     },
+    UNSET_LOGGEDIN_USER(state){
+        state.loggedinUser = ''
+    }
 
 };
 

@@ -36,7 +36,7 @@
             })
         },
         methods: {
-            onSubmit() {
+            editProduct() {
                 const date = new Date()
                 let newProduct = {
                     id: this.addProductForm.id,
@@ -49,7 +49,6 @@
                     img: this.url
 
                 }
-                console.log(newProduct)
                 if (this.addProductForm.name && this.addProductForm.price && this.addProductForm.category) {
                     this.$store.commit('EDIT_PRODUCT', newProduct)
                     this.saveSuccess();
@@ -81,7 +80,6 @@
                 let id = this.$route.params.id;
                 let product = this.products.filter(product => product.id == id)[0];
                 this.addProductForm = product;
-                console.log(product)
             }
 
         },
@@ -114,7 +112,7 @@
                         <el-col :span="12">
                             <el-form-item label="Category">
                                 <el-select v-model="addProductForm.category" placeholder="please select Category">
-                                    <el-option v-for="name in category" :disabled="addProductForm.category"
+                                    <el-option v-for="name in category"
                                                :key="name.id" :label="name.name"
                                                :selected = "name.id == addProductForm.category_id ? 'selected' : ''"
                                                :value="name.id"></el-option>
@@ -133,7 +131,7 @@
                         <el-input type="textarea" :rows="8" v-model="addProductForm.description"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit" class="create-product">Save Changes</el-button>
+                        <el-button type="primary" @click="editProduct" class="create-product">Save Changes</el-button>
                         <router-link :to="{name:'productslist_route'}">
                             <el-button>Cancel</el-button>
                         </router-link>

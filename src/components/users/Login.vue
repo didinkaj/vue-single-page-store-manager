@@ -25,6 +25,7 @@
                 firebase.auth().signInWithEmailAndPassword(this.loginForm.email, this.loginForm.password)
                     .then((resp) => {
                         console.log(JSON.stringify(resp.user.email));
+                        this.$store.commit('SETLOGGEDIN_USER',resp.user.email)
                         this.saveSuccess(resp.user.email);
                         this.$router.push('/');
 
