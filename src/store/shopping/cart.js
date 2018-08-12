@@ -37,12 +37,14 @@ const state = {
         },
 
     ],
+    address:'Delivery address'
 
 }
 
 const getters = {
     cartItems:state => state.cartItems,
     cartItemsNo :state => state.cartItems.length,
+    address :state => state.address,
 }
 
 const mutations = {
@@ -95,6 +97,10 @@ const mutations = {
         }
 
     },
+    ADD_ADDRESS(state,address){
+        state.address = ''
+        state.address = address
+    }
 };
 
 const actions = {};

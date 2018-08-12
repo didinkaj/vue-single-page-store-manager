@@ -2,6 +2,7 @@
     import ElRow from "element-ui/packages/row/src/row";
     import ElCol from "element-ui/packages/col/src/col";
     import ElForm from "../../../node_modules/element-ui/packages/form/src/form.vue";
+    import {mapGetters} from 'vuex'
 
     export default {
         components: {
@@ -14,10 +15,31 @@
             return {
                 active: 1,
                 isCheckout: false,
-                address: ''
+                inputAddress: ''
             }
         },
+        computed: {
+            ...mapGetters({
+                cartItems: 'cartItems',
+                address:'address'
+            }),
+            totalAmountInCart:function () {
+
+                let arrayItemsInCart = this.cartItems
+
+                let total = arrayItemsInCart.reduce(function(prev, cur) {
+                    return prev + (cur.price * cur.quantity);
+                }, 0);
+
+                return total;
+            }
+
+        },
         methods: {
+            saveToStore(){
+                this.$store.commit('ADD_ADDRESS',this.inputAddress)
+                console.log('saving',this.inputAddress)
+            },
             next() {
                 if (this.active++ > 2) this.active = 0;
             },
@@ -50,9 +72,18 @@
                     return true
                 }
                 return false
+            },
+            getAddress(){
+                if(this.inputAddress!=""){
+                    this.address = this.inputAddress
+                }
             }
         },
-        watch: {}
+        watch: {},
+        created(){
+            this.getAddress();
+            console.log(this.address,'nnnn')
+        }
     }
 </script>
 <template>
@@ -70,14 +101,26 @@
                         <div class="text">
                             <p v-show="isCheckout">
                                 <i class="el-icon-success icon"></i><br/>
-                                Thank you for shopping with us, your products will be delivered in 5 bussiness working days
+                                Thank you for shopping with us, your products will be delivered within 5 bussiness working days to {{address}}
                             </p>
                             <p v-show="!nextStatus()">
-                                <el-form >
+                                <el-form v-on:submit.prevent="saveToStore()" >
                                     <el-form-item label="Delivery Address">
-                                        <el-input type="text" v-model="address" required></el-input>
+                                        <el-input type="text" v-model="inputAddress" :placeholder="address" :value="address"   v-on:keyup.enter="saveToStore()"></el-input>
                                     </el-form-item>
                                 </el-form>
+                            </p>
+                            <p v-show="!disableCheckout()">
+                                <el-col :span="24" class="price-div">
+                                    <el-card>
+                                        Total Amount: <span class="total-price">Ksh {{totalAmountInCart * 100 | priceWithComma}}</span>
+                                        <router-link :to="{name:'usercart_route'}" class="cartlink">
+                                            view cart
+                                        </router-link>
+                                    </el-card>
+                                </el-col>
+                                <br/>
+                                <br/>
                             </p>
                         </div>
                     </el-row>
@@ -110,6 +153,10 @@
     </div>
 </template>
 <style>
+    .cartlink{
+        color: blue;
+        float: right;
+    }
     .steps {
         margin-top: 50px;
     }
