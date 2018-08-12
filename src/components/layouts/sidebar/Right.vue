@@ -25,13 +25,13 @@
             },
             cartDetails() {
                 this.itemsInCart = this.cartItemsNo;
-            }
-            ,
+            },
             logout() {
+                this.$store.commit('UNSET_LOGGEDIN_USER')
                 firebase.auth().signOut().then(() => {
                     this.$router.push('user/login');
                 })
-                this.$store.commit('UNSET_LOGGEDIN_USER')
+
 
             },
         isLoggedIn(){

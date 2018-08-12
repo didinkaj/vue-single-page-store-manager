@@ -82,8 +82,8 @@
                     <span> Account</span>
                 </el-menu-item>
             </router-link>
-            <router-link :to="{name:'useraccount_route'}" v-show="!isLoggedIn()">
-                <el-menu-item index="3" class="search">
+            <router-link :to="{name:'useraccount_route'}" v-show="!isLoggedIn()" class="name">
+                <el-menu-item index="3" class="search ">
                     {{loggedinUser }}
                 </el-menu-item>
             </router-link>
@@ -96,6 +96,9 @@
 <style>
     .search {
         float: right;
+    }
+    .name a{
+        color: #ffff00;
     }
 
     a {
@@ -111,6 +114,7 @@
         font-size: 16px;
         width: 300px;
     }
+
 
 
 </style>
