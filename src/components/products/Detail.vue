@@ -113,7 +113,7 @@
                         <delete-component :dialogVisible="dialogVisible" >
                                <div slot="content">
                                    <div class="product-name" >
-                                       {{product.name}} : <span class="product-price"> {{product.price | toUssd}}</span>
+                                       {{product.name}} : <span class="product-price">mm {{product.price | toUssd}}</span>
                                    </div>
                                </div>
                             <div slot="footer" >
@@ -143,7 +143,7 @@
                     </el-dropdown>
 
                         <div class="product-desc" style="padding: 14px;">
-                            <div class="product-name" >{{product.name}} : <span class="product-price">$ {{product.price}}</span>
+                            <div class="product-name" >{{product.name}} : <span class="product-price">{{product.price | toUssd}}</span>
                             </div>
                             <div class="bottom clearfix">
                                 <time class="product-info">
