@@ -10,7 +10,8 @@
                 activeIndex2: '1',
                 input4: '',
                 search: '',
-                loggedUser:''
+                loggedUser:'',
+                email:''
             };
         },
         computed: {
@@ -34,6 +35,7 @@
             isLoggedIn() {
                 if (this.loggedinUser) {
                     return true;
+                    this.email = loggedinUser.email
                 }
             },
             activeUser() {
@@ -90,7 +92,7 @@
             </router-link>
             <router-link :to="{name:'useraccount_route'}" v-show="isLoggedIn()" class="name">
                 <el-menu-item index="3" class="search ">
-                    {{loggedUser.email }}
+                    {{email }}
                 </el-menu-item>
             </router-link>
 
