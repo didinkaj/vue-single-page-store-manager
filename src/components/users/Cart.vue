@@ -76,7 +76,7 @@
             saveSuccess() {
                 this.$notify({
                     title: 'Success',
-                    message: 'quantity increased successfully',
+                    message: 'quantity change successfully',
                     type: 'success'
                 });
             },
