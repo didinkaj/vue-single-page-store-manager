@@ -49,12 +49,13 @@ const getters = {
 
 const mutations = {
     ADD_CART_PRODUCT(state, data) {
-        const record = state.cartItems.find(product => product.product_id === data.product_id)
+
+        const record = state.cartItems.find(product => product.product_id === data.newProduct.product_id)
         if (!record) {
-            state.cartItems.unshift(data)
+            state.cartItems.unshift(data.newProduct)
         } else {
             if (record.quantity < 10) {
-                record.quantity++
+                record.quantity = data.quantity
             }
 
         }

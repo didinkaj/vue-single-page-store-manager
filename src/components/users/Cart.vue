@@ -13,7 +13,8 @@
             return {
                 itemsInCart: [],
                 totalAmount: 'mmm',
-                itemquantity: ''
+                itemquantity: '',
+                num1: 1
             }
         },
         computed: {
@@ -34,6 +35,10 @@
 
         },
         methods: {
+            handleChange7: function(product, value) {
+                console.log(value)
+               console.log(product)
+            },
             getCartItems() {
                 this.itemsInCart = this.cartItems
             },
@@ -49,7 +54,10 @@
                     type: 'success'
                 });
             },
-            handleChange(product) {
+            handleChange: function(product,value) {
+
+                let quantity = value;
+
                 const date = new Date()
                 let newProduct = {
                     id: product.id,
@@ -63,8 +71,9 @@
                     category_id: product.category,
                     img: product.img
                 }
+                let playload = {'newProduct':newProduct,'quantity':quantity}
 
-                this.$store.commit('ADD_CART_PRODUCT', newProduct)
+                this.$store.commit('ADD_CART_PRODUCT', playload)
                 this.saveSuccess();
 
             },
@@ -133,10 +142,9 @@
                             </div>
                         </div>
                     </el-col>
-                    <el-input-number :value="parseInt(product.quantity)" @change="handleChange(product)" :min="1"
+                    <el-input-number :value="parseInt(product.quantity)" @change="handleChange(product,$event)" :min="1"
                                      :max="10"></el-input-number>
-                    <!--<el-input-number  :value="parseInt(product.quantity)"  @change="handleChange(value, product)" :min="1" :max="10"></el-input-number>-->
-                    <el-button type="danger pull-right" icon="el-icon-sold-out" @click="removeItem(product)"> Remove
+                     <el-button type="danger pull-right" icon="el-icon-sold-out" @click="removeItem(product)"> Remove
                     </el-button>
                 </el-card>
 
