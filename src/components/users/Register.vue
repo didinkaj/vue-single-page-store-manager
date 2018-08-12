@@ -25,7 +25,7 @@
                                 console.log(JSON.stringify(resp.user.email));
                                 this.$store.commit('SETLOGGEDIN_USER', resp.user.email)
                                 this.saveSuccess(resp.user.email);
-                                this.$Progress.end()
+                                this.$Progress.finish()
                                 this.$router.push('/');
 
                             }).catch(error => {
