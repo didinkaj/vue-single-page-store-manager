@@ -14,6 +14,7 @@ import UserCart from '@/components/users/Cart'
 import UserLogin from '@/components/users/Login'
 import UserRegister from '@/components/users/Register'
 import CheckOut from '@/components/users/Checkout'
+import DeleteProduct from '@/components/products/Delete'
 import firebase from 'firebase'
 
 
@@ -30,6 +31,14 @@ const router = new Router({
                 path:'Rproducts/detail/:id',
                 name:'productsdetail_nroute',
                 component:ProductsDetail
+            },
+            {
+                path:'product/delete',
+                name:'delete_product_route',
+                component:DeleteProduct,
+                meta:{
+                    requiresAuth:true
+                }
             }
             ]
     },
