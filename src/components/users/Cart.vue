@@ -39,6 +39,7 @@
                 this.itemsInCart = this.cartItems
             },
             removeItem(item) {
+                this.$Progress.start(10)
                 this.$store.commit('DELETE_CART_PRODUCT', item)
                 this.deleteSuccess();
             },
@@ -50,9 +51,8 @@
                 });
             },
             handleChange: function(product,value) {
-
+                this.$Progress.start(10)
                 let quantity = value;
-
                 const date = new Date()
                 let newProduct = {
                     id: product.id,

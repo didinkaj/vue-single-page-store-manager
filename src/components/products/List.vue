@@ -33,6 +33,7 @@
         },
         methods: {
             addToCart: function (product) {
+                this.$Progress.start()
                 const date = new Date()
                 let id = this.cartItemsNo + 1
                 let newProduct = {
@@ -48,6 +49,7 @@
                     img: product.img
                 };
                 this.$store.commit('SHOPING_ADD_NEW_PRODUCT_TO_CART', newProduct);
+                this.$Progress.finish()
                 this.success("Product added to cart successfully");
             },
             deleteSuccess() {
@@ -58,6 +60,7 @@
                 });
             },
             removeItem: function (item) {
+                this.$Progress.start(10)
                 this.$store.commit('SHOPING_REMOVE_PRODUCT_FROM_CART', item)
                 this.deleteSuccess();
             },

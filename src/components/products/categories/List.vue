@@ -49,6 +49,7 @@
                 return this.$router.push('/products/edit')
             },
             addToCart(product) {
+                this.$Progress.start(10)
                 const date = new Date()
                 let id = this.cartItemsNo + 1
                 let newProduct = {
@@ -86,6 +87,7 @@
 
             },
             removeItem: function (item) {
+                this.$Progress.start(10)
                 this.$store.commit('SHOPING_REMOVE_PRODUCT_FROM_CART', item)
                 this.deleteSuccess();
 
