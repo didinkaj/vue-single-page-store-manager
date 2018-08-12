@@ -20,10 +20,14 @@
             searchProduct() {
                 console.log(this.search)
             },
-            isLoggedIn(){
-                if(this.loggedinUser == ""){
+            isLoggedIn() {
+                if (this.loggedinUser == "") {
                     return true;
                 }
+            },
+            activeUser() {
+                let user = firebaseUser.auth().currentUser;
+                this.$store.commit('SETLOGGEDIN_USER', user)
             }
 
         },
@@ -39,8 +43,11 @@
             }
         },
         created() {
-        this.$store.dispatch('getUser');
-        console.log('active user',this.loggedinUser)
+            this.activeUser();
+            //this.$store.dispatch('getUser');
+            //console.log('active user', this.loggedinUser)
+        },
+        mounted() {
 
         }
 
@@ -84,7 +91,7 @@
             </router-link>
             <router-link :to="{name:'useraccount_route'}" v-show="!isLoggedIn()" class="name">
                 <el-menu-item index="3" class="search ">
-                    {{loggedinUser }}
+                    {{loggedinUser.email }}
                 </el-menu-item>
             </router-link>
 
@@ -97,7 +104,8 @@
     .search {
         float: right;
     }
-    .name a{
+
+    .name a {
         color: #ffff00;
     }
 
@@ -114,7 +122,6 @@
         font-size: 16px;
         width: 300px;
     }
-
 
 
 </style>
