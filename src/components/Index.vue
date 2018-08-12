@@ -21,7 +21,7 @@
             }
         },
         created(){
-            this.$Progress.start(40)
+            this.$Progress.finish()
         }
     };
 </script>
