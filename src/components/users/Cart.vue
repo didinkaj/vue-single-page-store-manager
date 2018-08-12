@@ -35,10 +35,6 @@
 
         },
         methods: {
-            handleChange7: function(product, value) {
-                console.log(value)
-               console.log(product)
-            },
             getCartItems() {
                 this.itemsInCart = this.cartItems
             },

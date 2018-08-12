@@ -54,7 +54,7 @@ const mutations = {
         if (!record) {
             state.cartItems.unshift(data.newProduct)
         } else {
-            if (record.quantity < 10) {
+            if (record.quantity <= 10) {
                 record.quantity = data.quantity
             }
 
