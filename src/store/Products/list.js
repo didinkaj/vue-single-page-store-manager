@@ -80,7 +80,8 @@ const mutations = {
 },
     EDIT_PRODUCT(state, data){
         state.products= state.products.map(product=>product.id ==data.id? {...product,data} :product);
-    }
+    },
+
 };
 
 const actions = {};

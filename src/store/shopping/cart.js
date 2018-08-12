@@ -1,5 +1,4 @@
 const state = {
-
     cartItems: [{
         id:1,
         product_id:3,
@@ -48,7 +47,7 @@ const getters = {
 
 const mutations = {
     ADD_CART_PRODUCT(state, data){
-        const record = state.cartItems.find(product => product.id === data.product_id)
+        const record = state.cartItems.find(product => product.product_id === data.product_id)
         if(!record){
             state.cartItems.unshift(data)
         }else{
@@ -59,22 +58,38 @@ const mutations = {
         }
 
     },
-    DELETE_CART_PRODUCT(state, data){
-        state.cartItems.splice( state.cartItems.indexOf(data), 1 );
+
+    SHOPING_ADD_NEW_PRODUCT_TO_CART(state, data){
+        state.cartItems.unshift(data)
     },
+
+    SHOPING_REMOVE_PRODUCT_FROM_CART(state, data){
+        const product = state.cartItems.find(product => product.product_id === data.id)
+        let itemIndex = state.cartItems.indexOf(product);
+        state.cartItems.splice( itemIndex, 1 );
+    },
+
+    DELETE_CART_PRODUCT(state, data){
+        const product = state.cartItems.find(product => product.product_id === data.product_id)
+        let itemIndex = state.cartItems.indexOf(product);
+        state.cartItems.splice( itemIndex, 1 );
+    },
+
     EMPTY_CART(state) {
         while (state.cartItems.length) { state.cartItems.pop(); }
-        console.log("items deleted")
     },
+
     DECREASE_CART_PRODUCT(state, data){
         const record = state.cartItems.find(product => product.id === data.product_id)
         if(!record){
-            //state.cartItems.unshift(data)
+
         }else{
             if(record.quantity>1){
                 record.quantity--
             }else{
-                state.cartItems.splice( state.cartItems.indexOf(data), 1 );
+                const product = state.cartItems.find(product => product.product_id === data.product_id)
+                let itemIndex = state.cartItems.indexOf(product);
+                state.cartItems.splice( itemIndex, 1 );
             }
 
         }

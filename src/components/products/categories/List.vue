@@ -11,24 +11,26 @@
         name: 'productscategory_route',
         data() {
             return {
-                product: [],
+                productsFiltered: [],
                 route_id: this.$route.params.id,
             }
         },
         computed: {
             ...mapGetters({
-                products: 'products'
+                products: 'products',
+                cartItems: 'cartItems',
+                cartItemsNo:'cartItemsNo'
             })
         },
         methods: {
             filterProducts() {
                 let id = this.$route.params.id;
                 let product = this.products.filter(product => product.category_id==id);
-                this.product = product;
+                this.productsFiltered = product;
             },
             deleteProduct(product) {
                 console.log(product)
-                this.$store.commit('DELETE_PRODUCT', product)
+                this.$store.commit('SHOPING_REMOVE_PRODUCT_FROM_CART', product)
                 this.deleteSuccess();
                 return this.$router.push('/')
             },
@@ -58,7 +60,7 @@
                     img: product.img
                 }
                 console.log('item added'+newProduct)
-                this.$store.commit('ADD_CART_PRODUCT', newProduct)
+                this.$store.commit('SHOPING_ADD_NEW_PRODUCT_TO_CART', newProduct)
                 this.saveSuccess();
 
             },
@@ -68,7 +70,23 @@
                     message: 'Product added successfully',
                     type: 'success'
                 });
-            }
+            },
+            added(id) {
+                let ids=  this.cartItems.map(cartItem=>cartItem.product_id);
+
+                let index = ids.includes(id)
+
+                if(index) {
+                    return true;
+                }
+                return false;
+
+            },
+            removeItem: function(item) {
+                this.$store.commit('SHOPING_REMOVE_PRODUCT_FROM_CART', item)
+                this.deleteSuccess();
+
+            },
         },
         mounted() {
             this.filterProducts();
@@ -83,8 +101,8 @@
 </script>
 <template>
     <div>
-        <el-row v-if="product.length">
-            <el-col :span="7" v-for="product in product" :key="product.id" :offset="product > 0 ? 1 : 1" class="product">
+        <el-row v-if="productsFiltered.length">
+            <el-col :span="7" v-for="product in productsFiltered" :key="product.id" :offset="product > 0 ? 1 : 1" class="product">
                 <el-card :body-style="{ padding: '0px' }">
                     <!--:src="product.img"-->
                     <router-link :to="{name:'productsdetail_route', params:{id:product.id}}">
@@ -99,7 +117,9 @@
                             </div>
                         </div>
                     </router-link>
-                    <el-button type="primary pull-right" @click="addToCart(product)" icon="el-icon-sold-out"> Order</el-button>
+                    <el-button type="primary pull-right" v-show="!added(product.id)" @click="addToCart(product)" icon="el-icon-sold-out"> Order</el-button>
+                    <el-button type="danger pull-right" v-show="added(product.id)" @click="removeItem(product)" icon="el-icon-sold-out"> Remove</el-button>
+
                 </el-card>
 
             </el-col>

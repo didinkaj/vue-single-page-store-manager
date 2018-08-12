@@ -47,13 +47,11 @@
                     type: 'success'
                 });
             },
-            handleChange(product,value){
-                console.log(value)
+            handleChange(product){
                 const date = new Date()
-                let id = this.cartItemsNo + 1
                 let newProduct = {
-                    id:id,
-                    product_id: product.id,
+                    id:product.id,
+                    product_id: product.product_id,
                     user_id:1,
                     name: product.name,
                     description: product.description,

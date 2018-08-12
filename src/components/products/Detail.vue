@@ -13,6 +13,7 @@
         computed: {
         ...mapGetters({
             products:'products',
+            cartItems: 'cartItems',
             cartItemsNo:'cartItemsNo'
         })
         },
@@ -33,7 +34,7 @@
                 img: product.img
             }
             console.log('item added'+newProduct)
-            this.$store.commit('ADD_CART_PRODUCT', newProduct)
+            this.$store.commit('SHOPING_ADD_NEW_PRODUCT_TO_CART', newProduct)
             this.saveSuccess();
 
         },
@@ -45,7 +46,7 @@
             },
             deleteProduct(product){
                 console.log(product)
-                this.$store.commit('DELETE_PRODUCT', product)
+                this.$store.commit('SHOPING_REMOVE_PRODUCT_FROM_CART', product)
 //                this.$store.commit('DELETE_CART_PRODUCT', product)
                 this.deleteSuccess();
                 return this.$router.push( '/')
@@ -67,7 +68,23 @@
             editProduct(product_id){
              console.log(product_id);
                 return this.$router.push({ name: 'productsedit_route', params: { id: product_id }})
-            }
+            },
+            added(id) {
+                let ids=  this.cartItems.map(cartItem=>cartItem.product_id);
+
+                let index = ids.includes(id)
+
+                if(index) {
+                    return true;
+                }
+                return false;
+
+            },
+            removeItem: function(item) {
+                this.$store.commit('SHOPING_REMOVE_PRODUCT_FROM_CART', item)
+                this.deleteSuccess();
+
+            },
 
         },
         mounted(){
@@ -108,7 +125,8 @@
                                 <p>Stock: <span class="product-price">{{product.quantity}} </span>Remaining</p>
                             </div>
                         </div>
-                    <el-button type="primary pull-right" icon="el-icon-sold-out" @click="addToCart(product)"> Order</el-button>
+                    <el-button type="primary pull-right" v-show="!added(product.id)" @click="addToCart(product)" icon="el-icon-sold-out"> Order</el-button>
+                    <el-button type="danger pull-right" v-show="added(product.id)" @click="removeItem(product)" icon="el-icon-sold-out"> Remove</el-button>
                     <router-link :to="{name:'productslist_route'}"><el-button type="default pull-right">Back</el-button></router-link>
 
                 </el-card>

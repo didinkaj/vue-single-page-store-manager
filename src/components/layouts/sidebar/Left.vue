@@ -17,7 +17,6 @@
         },
         methods: {
             getSibarItems(){
-                console.log(this.category);
                 this.items = this.category;
             },
             handleOpen(key, keyPath) {
