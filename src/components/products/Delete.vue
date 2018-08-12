@@ -1,5 +1,4 @@
 <script>
-    import {mapGetters} from 'vuex'
     export default {
         name:'delete_product_route',
         props:[
@@ -11,17 +10,10 @@
 
             };
         },computed: {
-            ...mapGetters({
-                products:'products'
-            })
+
         },
         methods: {
-            filterProducts(){
-                let id = this.$route.params.id;
-                let product = this.products.filter(product => product.id == id);
-                this.product = product;
-                console.log(product)
-            }
+
 
         },
     mounted(){
