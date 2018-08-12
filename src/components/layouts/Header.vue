@@ -35,12 +35,13 @@
             isLoggedIn() {
                 if (this.loggedinUser) {
                     return true;
-                    this.email = loggedinUser.email
+
                 }
             },
             activeUser() {
                 let user = firebaseUser.auth().currentUser;
                 this.loggedUser = user
+                this.email = user.email
                 this.$store.commit('SETLOGGEDIN_USER', user)
             }
 
