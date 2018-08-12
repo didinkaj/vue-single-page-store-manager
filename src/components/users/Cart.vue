@@ -17,7 +17,8 @@
         },
         computed: {
             ...mapGetters({
-                cartItems: 'cartItems'
+                cartItems: 'cartItems',
+                cartItemsNo:'cartItemsNo'
             }),
             totalAmountInCart:function () {
 
@@ -61,7 +62,6 @@
                     category_id: product.category,
                     img: product.img
                 }
-                console.log('item added'+newProduct)
 
                 this.$store.commit('ADD_CART_PRODUCT', newProduct)
                 this.saveSuccess();
@@ -75,9 +75,13 @@
                 });
             },
             checkOut(){
-                console.log('item removed' + this.itemsInCart)
-                this.$store.commit('EMPTY_CART')
                 this.$router.push({name:'userCheckout_route'})
+            },
+            isDisable(){
+                if(this.cartItemsNo<=0){
+                    return true
+                }
+                return false
             }
 
         },
@@ -143,7 +147,7 @@
                 </el-col>
                 <el-col :span="5">
 
-                        <el-button @click.prevent="checkOut" type="success pull-right pull-right-margin-checkout">Check Out</el-button>
+                        <el-button :disabled="isDisable()" @click.prevent="checkOut" type="success pull-right pull-right-margin-checkout">Check Out</el-button>
 
                 </el-col>
             </el-row>
