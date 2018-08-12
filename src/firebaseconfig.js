@@ -1,7 +1,7 @@
-
 import firebase from 'firebase';
 import 'firebase/firestore';
-let  config = {
+
+let config = {
     apiKey: "AIzaSyCJtD764s3D86mIsYLnKNrHhXUgkK8ODmA",
     authDomain: "vuestore-a45a5.firebaseapp.com",
     databaseURL: "https://vuestore-a45a5.firebaseio.com",

@@ -14,21 +14,21 @@ import './firebaseconfig'
 import InstantSearch from 'vue-instantsearch';
 
 Vue.config.productionTip = false
-Vue.use(ElementUI, { locale });
+Vue.use(ElementUI, {locale});
 Vue.use(InstantSearch);
-for(let name in Myfilters) {
+for (let name in Myfilters) {
     Vue.filter(name, Myfilters[name]);
 }
 
 let app;
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     if (!app) {
         /* eslint-disable no-new */
         app = new Vue({
             el: '#app',
             router,
             store,
-            mixins:[mixin],
+            mixins: [mixin],
             render: h => h(App)
         });
     }

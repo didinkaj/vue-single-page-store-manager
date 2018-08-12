@@ -7,10 +7,11 @@
     export default {
         components: {
             ElCol,
-            ElRow},
-        name:'userlogin_route',
-        data(){
-            return{
+            ElRow
+        },
+        name: 'userlogin_route',
+        data() {
+            return {
                 loginForm: {
                     email: '',
                     password: ''
@@ -18,17 +19,17 @@
 
             }
         },
-        methods:{
-            onSubmit(){
+        methods: {
+            onSubmit() {
 
-                firebase.auth().signInWithEmailAndPassword(this.loginForm.email,this.loginForm.password)
-                    .then((resp)=>{
-                    console.log(JSON.stringify(  resp.user.email));
-                    this.saveSuccess(resp.user.email);
+                firebase.auth().signInWithEmailAndPassword(this.loginForm.email, this.loginForm.password)
+                    .then((resp) => {
+                        console.log(JSON.stringify(resp.user.email));
+                        this.saveSuccess(resp.user.email);
                         this.$router.push('/');
 
                     }).catch(error => {
-                        //console.log(error.message);
+                    //console.log(error.message);
                     this.saveError(error.message);
                 })
                 //console.log('submitted')
@@ -36,7 +37,7 @@
             saveSuccess(user) {
                 this.$notify({
                     title: 'Success',
-                    message: 'Welcome '+ user,
+                    message: 'Welcome ' + user,
                     type: 'success'
                 });
             },
@@ -53,7 +54,7 @@
 <template>
     <div>
         <el-col :span="22">
-            <el-card class="add-product-form" >
+            <el-card class="add-product-form">
                 <p class="form-title">Login Form </p>
                 <el-form ref="form" :model="loginForm" label-width="120px" required="required">
                     <el-form-item label="Email">
@@ -72,7 +73,8 @@
                 </el-form>
                 <el-row>
                     <el-col :span="10" :offset="10">
-                        <router-link :to ="{name:'userregister_route'}" id="register" > <p>Creare an account Here</p></router-link>
+                        <router-link :to="{name:'userregister_route'}" id="register"><p>Creare an account Here</p>
+                        </router-link>
                     </el-col>
                 </el-row>
             </el-card>
@@ -86,7 +88,8 @@
         text-align: center;
         margin-bottom: 30px;
     }
-    #register{
+
+    #register {
         color: blue;
     }
 

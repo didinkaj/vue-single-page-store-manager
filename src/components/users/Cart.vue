@@ -6,25 +6,26 @@
     export default {
         components: {
             ElCard,
-            ElCol},
+            ElCol
+        },
         name: 'usercart_route',
         data() {
             return {
                 itemsInCart: [],
-                totalAmount:'mmm',
-                itemquantity : ''
+                totalAmount: 'mmm',
+                itemquantity: ''
             }
         },
         computed: {
             ...mapGetters({
                 cartItems: 'cartItems',
-                cartItemsNo:'cartItemsNo'
+                cartItemsNo: 'cartItemsNo'
             }),
-            totalAmountInCart:function () {
+            totalAmountInCart: function () {
 
                 let arrayItemsInCart = this.itemsInCart
 
-                let total = arrayItemsInCart.reduce(function(prev, cur) {
+                let total = arrayItemsInCart.reduce(function (prev, cur) {
                     return prev + (cur.price * cur.quantity);
                 }, 0);
 
@@ -48,16 +49,16 @@
                     type: 'success'
                 });
             },
-            handleChange(product){
+            handleChange(product) {
                 const date = new Date()
                 let newProduct = {
-                    id:product.id,
+                    id: product.id,
                     product_id: product.product_id,
-                    user_id:1,
+                    user_id: 1,
                     name: product.name,
                     description: product.description,
                     date: date,
-                    quantity:1,
+                    quantity: 1,
                     price: parseInt(product.price),
                     category_id: product.category,
                     img: product.img
@@ -74,11 +75,11 @@
                     type: 'success'
                 });
             },
-            checkOut(){
-                this.$router.push({name:'userCheckout_route'})
+            checkOut() {
+                this.$router.push({name: 'userCheckout_route'})
             },
-            isDisable(){
-                if(this.cartItemsNo<=0){
+            isDisable() {
+                if (this.cartItemsNo <= 0) {
                     return true
                 }
                 return false
@@ -89,7 +90,7 @@
             this.getCartItems();
         },
         watch: {
-            itemsInCarts:function (val) {
+            itemsInCarts: function (val) {
                 this.itemsInCart = this.cartItems
             },
 
@@ -105,7 +106,8 @@
                     <p> My Cart Items</p>
                 </el-col>
                 <el-col :span="10" class="price-div">
-                    <el-card> Total Amount: <span class="total-price">Ksh {{totalAmountInCart * 100 | priceWithComma}}</span></el-card>
+                    <el-card> Total Amount: <span
+                            class="total-price">Ksh {{totalAmountInCart * 100 | priceWithComma}}</span></el-card>
                 </el-col>
             </el-row>
             <el-col :span="22" v-for="product in itemsInCart" :key="product.id" :offset="product > 0 ? 1 : 1"
@@ -113,21 +115,26 @@
                 <el-card :body-style="{ padding: '0px' }">
                     <!--:src="product.img"-->
                     <el-col :span="6">
+                        <router-link :to="{name:'productsdetail_route', params:{id:product.product_id}}">
                         <img class="img-product-dets" src="../../assets/laptop.jpg">
+                        </router-link>
                     </el-col>
                     <el-col :span="18">
                         <div class="product-desc" style="padding: 14px;">
-                            <div class="product-name-incart"><span class="product-price">{{product.quantity}}</span>&nbsp;{{product.name}} @ <span
-                                    class="product-price"> {{product.price | toUssd}}   </span></div>
+                            <div class="product-name-incart">
+                                <span class="product-price">{{product.quantity}}
+                                </span>&nbsp;{{product.name}} @ <span class="product-price"> {{product.price | toUssd}}</span>
+                            </div>
                             <div class="bottom clearfix">
                                 <time class="product-info">
-                                    {{product.description | readMore(1000,'...') }}
+                                    {{product.description | readMore(120, '...') }}
                                 </time>
 
                             </div>
                         </div>
                     </el-col>
-                    <el-input-number  :value="parseInt(product.quantity)"  @change="handleChange(product)" :min="1" :max="10"></el-input-number>
+                    <el-input-number :value="parseInt(product.quantity)" @change="handleChange(product)" :min="1"
+                                     :max="10"></el-input-number>
                     <!--<el-input-number  :value="parseInt(product.quantity)"  @change="handleChange(value, product)" :min="1" :max="10"></el-input-number>-->
                     <el-button type="danger pull-right" icon="el-icon-sold-out" @click="removeItem(product)"> Remove
                     </el-button>
@@ -136,22 +143,24 @@
             </el-col>
         </el-row>
 
-            <el-row>
-                <el-col :span="12">
-                    &nbsp;
-                </el-col>
-                <el-col :span="5" class="price-div">
-                    <router-link :to="{name:'productslist_route'}">
-                        <el-button type="default pull-right " >Continue Shopping</el-button>
-                    </router-link>
-                </el-col>
-                <el-col :span="5">
+        <el-row>
+            <el-col :span="12">
+                &nbsp;
+            </el-col>
+            <el-col :span="5" class="price-div">
+                <router-link :to="{name:'productslist_route'}">
+                    <el-button type="default pull-right ">Continue Shopping</el-button>
+                </router-link>
+            </el-col>
+            <el-col :span="5">
 
-                        <el-button :disabled="isDisable()" @click.prevent="checkOut" type="success pull-right pull-right-margin-checkout">Check Out</el-button>
+                <el-button :disabled="isDisable()" @click.prevent="checkOut"
+                           type="success pull-right pull-right-margin-checkout">Check Out
+                </el-button>
 
-                </el-col>
-            </el-row>
-        
+            </el-col>
+        </el-row>
+
 
     </div>
 
@@ -163,16 +172,18 @@
     }
 
     .pull-right-margin {
-       margin-right: 80px;
+        margin-right: 80px;
     }
-    .total-price{
+
+    .total-price {
         color: green;
         margin-left: 20px;
         font-weight: 800;
         font-size: 18px;
 
     }
-    .price-div{
+
+    .price-div {
         margin-left: 10px;
     }
 

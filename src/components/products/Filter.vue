@@ -1,10 +1,8 @@
 <script>
     export default {
-        name:'productsfilter_route',
-        data(){
-            return{
-
-            }
+        name: 'productsfilter_route',
+        data() {
+            return {}
         }
     }
 

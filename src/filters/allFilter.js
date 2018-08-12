@@ -4,7 +4,7 @@ export default {
     },
     readMore(text, length, suffix) {
         let words = '';
-        text.length > length ? words = text.substring(0, length) + suffix: words = text
+        text.length > length ? words = text.substring(0, length) + suffix : words = text
         return words
     },
     toUssd(value) {

@@ -17,7 +17,7 @@
         },
         data() {
             return {
-                footerTitle:"By johnson didinya"
+                footerTitle: "By johnson didinya"
             }
         }
     };
@@ -32,7 +32,7 @@
                 <side-bar-left></side-bar-left>
             </el-col>
 
-            <el-col :span="15" class="main-content" :offset="5" >
+            <el-col :span="15" class="main-content" :offset="5">
                 <el-collapse-transition>
                     <router-view></router-view>
                 </el-collapse-transition>
@@ -77,7 +77,8 @@
     .main-content {
         position: relative;
     }
-    .cart{
+
+    .cart {
         position: fixed;
     }
 

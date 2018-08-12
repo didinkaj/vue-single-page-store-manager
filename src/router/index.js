@@ -21,120 +21,120 @@ import firebase from 'firebase'
 Vue.use(Router)
 
 const router = new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'productslist_route',
-      component: ProductList,
-        children:[
-            {
-                path:'Rproducts/detail/:id',
-                name:'productsdetail_nroute',
-                component:ProductsDetail
-            },
-            {
-                path:'product/delete',
-                name:'delete_product_route',
-                component:DeleteProduct,
-                meta:{
-                    requiresAuth:true
+    routes: [
+        {
+            path: '/',
+            name: 'productslist_route',
+            component: ProductList,
+            children: [
+                {
+                    path: 'Rproducts/detail/:id',
+                    name: 'productsdetail_nroute',
+                    component: ProductsDetail
+                },
+                {
+                    path: 'product/delete',
+                    name: 'delete_product_route',
+                    component: DeleteProduct,
+                    meta: {
+                        requiresAuth: true
+                    }
                 }
-            }
             ]
-    },
+        },
 
-      {
-        path:'/products/add',
-          name:'productsadd_route',
-          component:AddProducts,
-          meta:{
-              requiresAuth:true
-          }
-      },
-      {
-        path:'/products/edit/:id',
-          name:'productsedit_route',
-          component:ProductsEdit,
-          meta:{
-              requiresAuth:true
-          }
-      },
-      {
-          path:'/products/detail/:id',
-          name:'productsdetail_route',
-          component:ProductsDetail
-      },
-      {
-          path:'/products/category/:id',
-          name:'productscategory_route',
-          component:ProductCategory
-      },
-      {
-        path:'/products/categories/add',
-          name:'productscategoriesadd_route',
-          component:ProductCategoriesAdd,
-          meta:{
-              requiresAuth:true
-          }
-      },{
-        path:'/products/categories/details',
-          name:'productscategoriesdetails_route',
-          component:Category
-      },
-      {
-        path:'/user/account',
-          name:'useraccount_route',
-          component:UserAccount
-      },
-      {
-        path:'/user/products',
-          name:'userproducts_route',
-          component:UserProducts
-      },
-      {
-          path:'/user/cart',
-          name:'usercart_route',
-          component:UserCart
-      },
-      {
-          path:'/user/login',
-          name:'userlogin_route',
-          component:UserLogin
-      },
-      {
-          path:'/user/register',
-          name:'userregister_route',
-          component:UserRegister
-      },
-      {
-          path:'/user/checkout',
-          name:'userCheckout_route',
-          component:CheckOut,
-          meta:{
-              requiresAuth:true,
-          }
-      }
-  ],
-    mode:'history'
+        {
+            path: '/products/add',
+            name: 'productsadd_route',
+            component: AddProducts,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/products/edit/:id',
+            name: 'productsedit_route',
+            component: ProductsEdit,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/products/detail/:id',
+            name: 'productsdetail_route',
+            component: ProductsDetail
+        },
+        {
+            path: '/products/category/:id',
+            name: 'productscategory_route',
+            component: ProductCategory
+        },
+        {
+            path: '/products/categories/add',
+            name: 'productscategoriesadd_route',
+            component: ProductCategoriesAdd,
+            meta: {
+                requiresAuth: true
+            }
+        }, {
+            path: '/products/categories/details',
+            name: 'productscategoriesdetails_route',
+            component: Category
+        },
+        {
+            path: '/user/account',
+            name: 'useraccount_route',
+            component: UserAccount
+        },
+        {
+            path: '/user/products',
+            name: 'userproducts_route',
+            component: UserProducts
+        },
+        {
+            path: '/user/cart',
+            name: 'usercart_route',
+            component: UserCart
+        },
+        {
+            path: '/user/login',
+            name: 'userlogin_route',
+            component: UserLogin
+        },
+        {
+            path: '/user/register',
+            name: 'userregister_route',
+            component: UserRegister
+        },
+        {
+            path: '/user/checkout',
+            name: 'userCheckout_route',
+            component: CheckOut,
+            meta: {
+                requiresAuth: true,
+            }
+        }
+    ],
+    mode: 'history'
 })
 
 router.beforeEach((to, from, next) => {
     let currentUser = firebase.auth().currentUser;
-if (to.matched.some(record => record.meta.requiresAuth)){
+    if (to.matched.some(record => record.meta.requiresAuth)) {
 
-    if (!currentUser) {
-        next({
-            path: '/user/login',
-            query: {redirect: to.fullPath}
-        })
+        if (!currentUser) {
+            next({
+                path: '/user/login',
+                query: {redirect: to.fullPath}
+            })
+        } else {
+            next();
+        }
+
     } else {
+
         next();
     }
-
-}else {
-
-    next();
-}
 
 })
 

@@ -1,24 +1,25 @@
 <script>
     import firebase from 'firebase'
+
     export default {
-        name:'userregister_route',
-        data(){
-            return{
+        name: 'userregister_route',
+        data() {
+            return {
                 registerForm: {
                     fname: '',
-                    sname:'',
-                    email:'',
+                    sname: '',
+                    email: '',
                     password: ''
                 }
 
             }
         },
-        methods:{
-            onSubmit(){
-               firebase.auth().createUserWithEmailAndPassword(this.registerForm.email,this.registerForm.password)
-                   .then((user)=>{
-                   console.log(user);
-                   })
+        methods: {
+            onSubmit() {
+                firebase.auth().createUserWithEmailAndPassword(this.registerForm.email, this.registerForm.password)
+                    .then((user) => {
+                        console.log(user);
+                    })
             }
         }
     }
@@ -27,7 +28,7 @@
 <template>
     <div>
         <el-col :span="22">
-            <el-card class="add-product-form" >
+            <el-card class="add-product-form">
                 <p class="form-title">Registration Form </p>
                 <el-form ref="form" :model="registerForm" label-width="120px" required="required">
                     <el-form-item label="First name">

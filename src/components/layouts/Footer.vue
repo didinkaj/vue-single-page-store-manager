@@ -2,7 +2,7 @@
     import ElRow from "element-ui/packages/row/src/row";
 
     export default {
-        props:[
+        props: [
             'footerTitle'
         ],
         components: {ElRow},

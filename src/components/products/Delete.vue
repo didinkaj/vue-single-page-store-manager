@@ -1,7 +1,7 @@
 <script>
     export default {
-        name:'delete_product_route',
-        props:[
+        name: 'delete_product_route',
+        props: [
             'dialogVisible'
         ],
         data() {
@@ -9,17 +9,12 @@
                 product: {},
 
             };
-        },computed: {
-
-        },
-        methods: {
-
-
-        },
-    mounted(){
+        }, computed: {},
+        methods: {},
+        mounted() {
 
 
-    }
+        }
     }
 
 </script>
@@ -46,7 +41,7 @@
 </template>
 
 <style>
-.dialog-footer{
-    float: right;
-}
+    .dialog-footer {
+        float: right;
+    }
 </style>

@@ -19,9 +19,9 @@
                     category_id: '',
                     date: '',
                     id: '',
-                    img:'',
-                    quantity:'',
-                    price:''
+                    img: '',
+                    quantity: '',
+                    price: ''
                 }
 
             }
@@ -43,7 +43,7 @@
                     name: this.addProductForm.productName,
                     description: this.addProductForm.productDesc,
                     date: date,
-                    quantity:this.addProductForm.quantity,
+                    quantity: this.addProductForm.quantity,
                     price: this.addProductForm.price,
                     category_id: this.addProductForm.category,
                     img: this.url
@@ -67,7 +67,7 @@
             saveSuccess() {
                 this.$notify({
                     title: 'Success',
-                    message: 'Product added successfully',
+                    message: 'Product edited successfully',
                     type: 'success'
                 });
             },
@@ -101,7 +101,7 @@
         <el-col :span="22" class="product">
             <el-card class="add-product-form">
                 <p class="form-title">Edit Product Form</p>
-                <el-form ref="form" :model="addProductForm"  label-width="120px" required="required">
+                <el-form ref="form" :model="addProductForm" label-width="120px" required="required">
                     <el-form-item label="Product Name">
                         <el-input v-model="addProductForm.name"></el-input>
                     </el-form-item>
@@ -114,7 +114,9 @@
                         <el-col :span="12">
                             <el-form-item label="Category">
                                 <el-select v-model="addProductForm.category" placeholder="please select Category">
-                                    <el-option  v-for="name in category" :disabled="addProductForm.category" :key="name.id" :label="name.name"
+                                    <el-option v-for="name in category" :disabled="addProductForm.category"
+                                               :key="name.id" :label="name.name"
+                                               :selected = "name.id == addProductForm.category_id ? 'selected' : ''"
                                                :value="name.id"></el-option>
                                 </el-select>
                             </el-form-item>

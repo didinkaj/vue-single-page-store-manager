@@ -1,51 +1,52 @@
 import firebase from 'firebase'
+
 const state = {
-    loggedinUser:'',
+    loggedinUser: '',
 
     users: [{
-        id:1,
+        id: 1,
         fname: 'Johnson',
-        sname:' Didinya',
+        sname: ' Didinya',
         email: 'jdidinya@gmail.com',
         password: '',
         previllege: '1'
     },
         {
-            id:2,
+            id: 2,
             fname: 'Johnson:',
-            sname:' Didinya',
+            sname: ' Didinya',
             email: 'jdidinya@gmail.com',
             password: '',
             previllege: '1'
         },
         {
-            id:3,
+            id: 3,
             fname: 'Johnson',
-            sname:' Didinya',
+            sname: ' Didinya',
             email: 'jdidinya@gmail.com',
             password: '',
             previllege: '1'
         },
         {
-            id:4,
+            id: 4,
             fname: 'Johnson',
-            sname:' Didinya',
+            sname: ' Didinya',
             email: 'jdidinya@gmail.com',
             password: '',
             previllege: '1'
         },
         {
-            id:5,
+            id: 5,
             fname: 'Johnson',
-            sname:' Didinya',
+            sname: ' Didinya',
             email: 'jdidinya@gmail.com',
             password: '',
             previllege: '1'
         },
         {
-            id:6,
+            id: 6,
             fname: 'Johnson',
-            sname:' Didinya',
+            sname: ' Didinya',
             email: 'jdidinya@gmail.com',
             password: '',
             previllege: '1'
@@ -60,21 +61,20 @@ const getters = {
 }
 
 const mutations = {
-    SETLOGGEDIN_USER(state,userInfo){
-        state.loggedinUser=userInfo;
+    SETLOGGEDIN_USER(state, userInfo) {
+        state.loggedinUser = userInfo;
     },
- 
+
 };
 
 
-
 const actions = {
-    getUser(store){
+    getUser(store) {
         var user = firebase.auth().currentUser;
         if (user != null) {
             email = user.email;
             uid = user.uid;
-            store.commit('SETLOGGEDIN_USER',email);
+            store.commit('SETLOGGEDIN_USER', email);
         }
     }
 

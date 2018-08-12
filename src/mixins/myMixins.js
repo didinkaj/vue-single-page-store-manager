@@ -1,16 +1,16 @@
 const myMixin = {
-    created(){
+    created() {
 
     },
-    methods:{
-        success:function(msg) {
+    methods: {
+        success: function (msg) {
             this.$notify({
                 title: 'Success',
                 message: msg,
                 type: 'success'
             });
         },
-        error:function() {
+        error: function () {
             this.$notify.error({
                 title: 'Error',
                 message: msg

@@ -1,5 +1,6 @@
 <script>
     import Homepage from '@/components/Index'
+
     export default {
         name: 'App',
         components: {

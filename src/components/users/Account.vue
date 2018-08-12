@@ -1,10 +1,8 @@
 <script>
     export default {
-        name:'useraccount_route',
-        data(){
-            return{
-
-            }
+        name: 'useraccount_route',
+        data() {
+            return {}
         }
     }
 

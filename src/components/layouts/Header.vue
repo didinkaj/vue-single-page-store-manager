@@ -1,6 +1,7 @@
 <script>
     import {mapGetters, mapActions} from 'vuex'
     import firebaseUser from 'firebase'
+
     export default {
         name: 'headernav',
         data() {
@@ -8,36 +9,34 @@
                 activeIndex: '1',
                 activeIndex2: '1',
                 input4: '',
-                search:''
+                search: ''
             };
         },
         methods: {
             handleSelect(key, keyPath) {
-              //  console.log(key, keyPath);
+                //  console.log(key, keyPath);
                 console.log(this.loggedinUser);
             },
-            searchProduct(){
+            searchProduct() {
                 console.log(this.search)
             },
 
         },
-        computed:{
+        computed: {
             ...mapGetters({
-                users:'users',
-                loggedinUser:'loggedinUser'
+                users: 'users',
+                loggedinUser: 'loggedinUser'
             }),
-            user(){
+            user() {
                 this.$root.$on('removeposition', filter => {
                     console.log("mmm")
                 })
             }
         },
-        created(){
-
+        created() {
 
 
         }
-
 
 
     }
@@ -52,7 +51,9 @@
                 background-color="#123456"
                 text-color="#fff"
                 active-text-color="yellow">
-            <el-menu-item index="1" class="is-active"><router-link :to="{name:'productslist_route'}">VueJS Electronic Store</router-link></el-menu-item>
+            <el-menu-item index="1" class="is-active">
+                <router-link :to="{name:'productslist_route'}">VueJS Electronic Store</router-link>
+            </el-menu-item>
             <el-submenu index="2">
                 <template slot="title">Products</template>
                 <el-menu-item index="2-1">
@@ -65,8 +66,9 @@
                     <router-link :to="{name:'productscategoriesdetails_route'}">View Categories</router-link>
                 </el-menu-item>
             </el-submenu>
-            <el-menu-item index="3" class="search" >
-                <el-input suffix-icon="el-icon-search" placeholder="Search ..." v-model="search" class="find" v-on:keyup.enter="seamrchProduct">
+            <el-menu-item index="3" class="search">
+                <el-input suffix-icon="el-icon-search" placeholder="Search ..." v-model="search" class="find"
+                          v-on:keyup.enter="seamrchProduct">
                 </el-input>
             </el-menu-item>
             <router-link :to="{name:'userlogin_route'}">
@@ -90,10 +92,11 @@
         text-decoration: none;
         display: block;
     }
-    .search input{
+
+    .search input {
         background-color: #123456;
         border-color: #123456;
-        color:#ffff00;
+        color: #ffff00;
         font-size: 16px;
         width: 300px;
     }

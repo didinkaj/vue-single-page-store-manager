@@ -1,22 +1,23 @@
 <script>
-    import { mapGetters } from 'vuex';
+    import {mapGetters} from 'vuex';
     import ElCol from "element-ui/packages/col/src/col";
+
     export default {
         components: {ElCol},
         name: 'sidebar-left',
         data() {
             return {
                 isCollapse: true,
-                items:[],
+                items: [],
             };
         },
-        computed:{
+        computed: {
             ...mapGetters({
-                category:'category'
+                category: 'category'
             })
         },
         methods: {
-            getSibarItems(){
+            getSibarItems() {
                 this.items = this.category;
             },
             handleOpen(key, keyPath) {
@@ -26,7 +27,7 @@
                 console.log(key, keyPath);
             }
         },
-        created(){
+        created() {
             this.getSibarItems();
         },
         filters: {
@@ -45,22 +46,23 @@
             <el-col :span="24">
                 <h5 class="logo">Products Categories</h5>
                 <el-menu
-                          default-active="0"
-                          class="el-menu-vertical-demo"
-                          @open="handleOpen"
-                          @close="handleClose">
+                        default-active="0"
+                        class="el-menu-vertical-demo"
+                        @open="handleOpen"
+                        @close="handleClose">
                     <router-link :to="{name:'productslist_route'}">
-                    <el-menu-item index="0">
-                        <i class="el-icon-tickets"></i>
-                        <span>All Products</span>
-                    </el-menu-item>
+                        <el-menu-item index="0">
+                            <i class="el-icon-tickets"></i>
+                            <span>All Products</span>
+                        </el-menu-item>
                     </router-link>
 
-                    <router-link v-for="item in items" :to="{name:'productscategory_route', params:{id:item.id}}" :key="item.id">
-                    <el-menu-item  :index="item.id | numberToString">
-                        <i :class="item.icon"></i>
-                        <span>{{item.name}}</span>
-                    </el-menu-item>
+                    <router-link v-for="item in items" :to="{name:'productscategory_route', params:{id:item.id}}"
+                                 :key="item.id">
+                        <el-menu-item :index="item.id | numberToString">
+                            <i :class="item.icon"></i>
+                            <span>{{item.name}}</span>
+                        </el-menu-item>
                     </router-link>
 
                 </el-menu>
@@ -70,7 +72,6 @@
         </el-row>
     </el-aside>
 </template>
-
 
 
 <style>

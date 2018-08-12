@@ -13,13 +13,13 @@
         data() {
             return {
                 url: '/static/img/laptop.737283c.jpg',
-                productNo:'',
+                productNo: '',
                 addProductForm: {
                     productName: '',
                     price: '',
                     category: '',
-                    quantity:'',
-                    image:'',
+                    quantity: '',
+                    image: '',
                     productDesc: ''
                 }
             }
@@ -27,36 +27,36 @@
         computed: {
             ...mapGetters({
                 productCount: 'productCount',
-                category:'category'
+                category: 'category'
             })
         },
         methods: {
             onSubmit() {
                 const date = new Date()
-                const Id = this.productNo+1
+                const Id = this.productNo + 1
                 let newProduct = {
                     id: Id,
                     name: this.addProductForm.productName,
                     description: this.addProductForm.productDesc,
                     date: date,
-                    quantity:this.addProductForm.quantity,
+                    quantity: this.addProductForm.quantity,
                     price: this.addProductForm.price,
                     category_id: this.addProductForm.category,
                     img: this.url
 
                 }
                 console.log(newProduct)
-                if(this.addProductForm.productName && this.addProductForm.price && this.addProductForm.category){
+                if (this.addProductForm.productName && this.addProductForm.price && this.addProductForm.category) {
                     this.$store.commit('ADD_PRODUCT', newProduct)
                     this.saveSuccess();
-                    return this.$router.push( '/')
-                }else{
+                    return this.$router.push('/')
+                } else {
                     this.saveError();
                 }
 
 
             },
-            getProductNO(){
+            getProductNO() {
                 this.productNo = this.productCount
 
             },
@@ -77,55 +77,55 @@
                 this.$refs.upload.submit();
             }
         },
-        created(){
+        created() {
             this.getProductNO();
         },
-        watch:{
-        }
+        watch: {}
     }
 </script>
 <template>
     <div>
         <el-col :span="22">
-        <el-card class="add-product-form" >
-            <p class="form-title">Add Product Form </p>
-            <el-form ref="form" :model="addProductForm" label-width="120px" required="required">
-                <el-form-item label="Product Name">
-                    <el-input v-model="addProductForm.productName"></el-input>
-                </el-form-item>
-                <el-row>
-                    <el-col :span="12">
-                        <el-form-item label="Price">
-                            <el-input type="number" v-model="addProductForm.price"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="12">
-                        <el-form-item label="Category">
-                            <el-select v-model="addProductForm.category" placeholder="please select Category">
-                                <el-option v-for="name in category" :key="name.id" :label="name.name" :value="name.id"></el-option>
-                            </el-select>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
+            <el-card class="add-product-form">
+                <p class="form-title">Add Product Form </p>
+                <el-form ref="form" :model="addProductForm" label-width="120px" required="required">
+                    <el-form-item label="Product Name">
+                        <el-input v-model="addProductForm.productName"></el-input>
+                    </el-form-item>
+                    <el-row>
+                        <el-col :span="12">
+                            <el-form-item label="Price">
+                                <el-input type="number" v-model="addProductForm.price"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-form-item label="Category">
+                                <el-select v-model="addProductForm.category" placeholder="please select Category">
+                                    <el-option v-for="name in category" :key="name.id" :label="name.name"
+                                               :value="name.id"></el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
 
-                <el-row>
-                    <el-col :span="12" :offset="6">
-                        <el-form-item label="Quantity">
-                            <el-input type="number" v-model="addProductForm.quantity"></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-form-item label="Description">
-                    <el-input type="textarea" :rows="8" v-model="addProductForm.productDesc"></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="onSubmit" class="create-product">Create</el-button>
-                    <router-link :to="{name:'productslist_route'}">
-                        <el-button>Cancel</el-button>
-                    </router-link>
-                </el-form-item>
-            </el-form>
-        </el-card>
+                    <el-row>
+                        <el-col :span="12" :offset="6">
+                            <el-form-item label="Quantity">
+                                <el-input type="number" v-model="addProductForm.quantity"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-form-item label="Description">
+                        <el-input type="textarea" :rows="8" v-model="addProductForm.productDesc"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="onSubmit" class="create-product">Create</el-button>
+                        <router-link :to="{name:'productslist_route'}">
+                            <el-button>Cancel</el-button>
+                        </router-link>
+                    </el-form-item>
+                </el-form>
+            </el-card>
         </el-col>
     </div>
 
