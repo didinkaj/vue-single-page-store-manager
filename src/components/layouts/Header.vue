@@ -9,27 +9,9 @@
                 activeIndex: '1',
                 activeIndex2: '1',
                 input4: '',
-                search: ''
+                search: '',
+                loggedUser:''
             };
-        },
-        methods: {
-            handleSelect(key, keyPath) {
-                //  console.log(key, keyPath);
-                console.log(this.loggedinUser);
-            },
-            searchProduct() {
-                console.log(this.search)
-            },
-            isLoggedIn() {
-                if (this.loggedinUser == "") {
-                    return true;
-                }
-            },
-            activeUser() {
-                let user = firebaseUser.auth().currentUser;
-                this.$store.commit('SETLOGGEDIN_USER', user)
-            }
-
         },
         computed: {
             ...mapGetters({
@@ -38,14 +20,31 @@
             }),
             user() {
                 this.$root.$on('removeposition', filter => {
-                    console.log("mmm")
+
                 })
             }
         },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(this.loggedinUser);
+            },
+            searchProduct() {
+                console.log(this.search)
+            },
+            isLoggedIn() {
+                if (this.loggedinUser) {
+                    return true;
+                }
+            },
+            activeUser() {
+                let user = firebaseUser.auth().currentUser;
+                this.loggedUser = user
+                this.$store.commit('SETLOGGEDIN_USER', user)
+            }
+
+        },
         created() {
             this.activeUser();
-            //this.$store.dispatch('getUser');
-            //console.log('active user', this.loggedinUser)
         },
         mounted() {
 
@@ -84,14 +83,14 @@
                           v-on:keyup.enter="seamrchProduct">
                 </el-input>
             </el-menu-item>
-            <router-link :to="{name:'userlogin_route'}" v-show="isLoggedIn()">
+            <router-link :to="{name:'userlogin_route'}" v-show="!isLoggedIn()">
                 <el-menu-item index="3" class="search">
                     <span> Account</span>
                 </el-menu-item>
             </router-link>
-            <router-link :to="{name:'useraccount_route'}" v-show="!isLoggedIn()" class="name">
+            <router-link :to="{name:'useraccount_route'}" v-show="isLoggedIn()" class="name">
                 <el-menu-item index="3" class="search ">
-                    {{loggedinUser.email }}
+                    {{loggedUser.email }}
                 </el-menu-item>
             </router-link>
 
