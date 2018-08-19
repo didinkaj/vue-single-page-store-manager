@@ -86,14 +86,11 @@
         created() {
             this.getProductNO();
             this.filterProducts();
+            this.$Progress.start(40)
         },
         mounted() {
 
         },
-        created(){
-            this.$Progress.start(40)
-        },
-
         watch: {}
     }
 </script>

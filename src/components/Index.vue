@@ -41,7 +41,7 @@
                     <router-view></router-view>
                 <!--</el-collapse-transition>-->
             </el-col>
-            <el-col :span="4" class="cart" :offset="19">
+        forumtdd-laravel-5.4    <el-col :span="4" class="cart" :offset="19">
                 <side-bar-right></side-bar-right>
             </el-col>
         </el-main>
