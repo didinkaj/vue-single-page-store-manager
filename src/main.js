@@ -18,8 +18,8 @@ Vue.config.productionTip = false
 Vue.use(ElementUI, {locale});
 Vue.use(InstantSearch);
 Vue.use(VueProgressBar, {
-    color: 'rgb(255,0,0)',
-    failedColor: 'red',
+    color: 'rgb(255,255,0)',
+    failedColor: 'yellow',
     height: '4px'
 })
 for (let name in Myfilters) {
