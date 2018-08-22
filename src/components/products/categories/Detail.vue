@@ -15,7 +15,8 @@
         },
         computed: {
             ...mapGetters({
-                category: 'category'
+                category: 'category',
+                loggedinUser: 'loggedinUser'
             })
         },
         methods: {
@@ -40,13 +41,22 @@
             },
             editCategory() {
                 return this.$router.push('/products/edit')
+            },
+            isAdmin() {
+                if (this.loggedinUser && this.loggedinUser.email == "didinkaj@gmail.com") {
+                    return true
+                } else {
+                    return false
+                }
             }
         },
         mounted() {
+            this.isAdmin();
 
         },
         created(){
-            this.$Progress.start(40)
+            this.$Progress.start(40);
+            this.isAdmin();
         }
     }
 </script>
@@ -55,7 +65,7 @@
         <el-row>
             <el-col :span="7" v-for="item in category" :key="item.id" :offset="category > 0 ? 1 : 1" class="product">
                 <el-card :body-style="{ padding: '0px' }">
-                    <el-dropdown class="pull-right">
+                    <el-dropdown class="pull-right"  v-show="isAdmin()">
                         <el-button type="default danger more-options">
                             <i class="el-icon-arrow-down el-icon--right"></i>
                         </el-button>

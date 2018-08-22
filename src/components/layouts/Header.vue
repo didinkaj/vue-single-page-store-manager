@@ -23,6 +23,13 @@
                 this.$root.$on('removeposition', filter => {
 
                 })
+            },
+            isAdmin(){
+                if(this.loggedinUser && this.loggedinUser.email == "didinkaj@gmail.com"){
+                    return true
+                }else{
+                    return false
+                }
             }
         },
         methods: {
@@ -48,11 +55,17 @@
             }
 
         },
+        watch:{
+            '$route'(to, from) {
+                this.activeUser();
+            },
+
+        },
         created() {
             this.activeUser();
         },
         mounted() {
-
+            this.activeUser();
         }
 
 
@@ -73,10 +86,10 @@
             </el-menu-item>
             <el-submenu index="2">
                 <template slot="title">Products</template>
-                <el-menu-item index="2-1">
+                <el-menu-item index="2-1" v-show="isAdmin">
                     <router-link :to="{name:'productsadd_route'}">Add Products</router-link>
                 </el-menu-item>
-                <el-menu-item index="2-2">
+                <el-menu-item index="2-2"  v-show="isAdmin">
                     <router-link :to="{name:'productscategoriesadd_route'}">Add Product Category</router-link>
                 </el-menu-item>
                 <el-menu-item index="2-3">

@@ -15,14 +15,16 @@
             return {
                 product: [],
                 isDelete: false,
-                dialogVisible: false
+                dialogVisible: false,
+                loggedUser:'',
             }
         },
         computed: {
             ...mapGetters({
                 products: 'products',
                 cartItems: 'cartItems',
-                cartItemsNo: 'cartItemsNo'
+                cartItemsNo: 'cartItemsNo',
+                loggedinUser: 'loggedinUser'
             })
         },
         methods: {
@@ -94,10 +96,21 @@
                 this.deleteSuccess();
 
             },
+            isAdmin() {
+                if (this.loggedinUser && this.loggedinUser.email == "didinkaj@gmail.com") {
+                    return true
+                } else {
+                    return false
+                }
+            }
 
         },
         mounted() {
             this.filterProducts();
+            this.isAdmin();
+        },
+        created(){
+            this.isAdmin();
         }
     }
 </script>
@@ -126,7 +139,7 @@
                     <img class="img-product-dets-1" src="../../assets/laptop.jpg">
 
 
-                    <el-dropdown class="pull-right">
+                    <el-dropdown class="pull-right" v-show="isAdmin()">
                         <el-button type="default danger more-options">
                             <i class="el-icon-arrow-down el-icon--right"></i>
                         </el-button>
