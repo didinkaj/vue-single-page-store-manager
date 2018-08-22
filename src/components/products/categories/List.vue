@@ -95,6 +95,7 @@
         },
         watch: {
             '$route'(to, from) {
+                this.getProducts()
                 this.filterProducts();
                 this.$Progress.start(40)
             },
