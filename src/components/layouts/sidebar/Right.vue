@@ -34,7 +34,7 @@
 
             },
         isLoggedIn(){
-            if(this.loggedinUser == ""){
+            if(this.loggedinUser){
                 return true;
             }
         }
@@ -45,7 +45,8 @@
         watch: {
             cartItemsNo: function () {
                 this.itemsInCart = this.cartItemsNo;
-            }
+            },
+
         }
     }
 </script>
@@ -77,13 +78,13 @@
                             <span>Cart <span class="item-in-cart">({{itemsInCart}})</span></span>
                         </el-menu-item>
                     </router-link>
-                    <router-link :to="{name:'userlogin_route'}" v-show="isLoggedIn()">
+                    <router-link :to="{name:'userlogin_route'}" v-show="!isLoggedIn()">
                     <el-menu-item @click="logout()" index="4">
                         <i class="el-icon-setting"></i>
                         <span>Log In</span>
                     </el-menu-item>
                     </router-link>
-                    <router-link :to="{name:'userlogin_route'}" v-show="!isLoggedIn()">
+                    <router-link :to="{name:'userlogin_route'}" v-show="isLoggedIn()">
                     <el-menu-item @click="logout()" index="4">
                         <i class="el-icon-setting"></i>
                         <span>Log Out</span>
