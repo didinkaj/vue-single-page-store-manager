@@ -20,8 +20,14 @@
         computed: {
             ...mapGetters({
                 cartItems: 'cartItems',
-                cartItemsNo: 'cartItemsNo'
+                cartItemsNo: 'cartItemsNo',
+                searchValue: 'searchValue'
             }),
+            filteredList() {
+                return this.itemsInCart.filter(product => {
+                    return product.name.toLowerCase().includes(this.searchValue.toLowerCase())
+                })
+            },
             totalAmountInCart: function () {
 
                 let arrayItemsInCart = this.itemsInCart
@@ -50,7 +56,7 @@
                     type: 'success'
                 });
             },
-            handleChange: function(product,value) {
+            handleChange: function (product, value) {
                 this.$Progress.start(10)
                 let quantity = value;
                 const date = new Date()
@@ -66,7 +72,7 @@
                     category_id: product.category,
                     img: product.img
                 }
-                let playload = {'newProduct':newProduct,'quantity':quantity}
+                let playload = {'newProduct': newProduct, 'quantity': quantity}
 
                 this.$store.commit('ADD_CART_PRODUCT', playload)
                 this.saveSuccess();
@@ -93,6 +99,7 @@
         created() {
             this.getCartItems();
             this.$Progress.start(40)
+            this.$store.commit('UNSET_SEARCH_VALUE');
         },
         watch: {
             itemsInCarts: function (val) {
@@ -105,7 +112,7 @@
 </script>
 <template>
     <div>
-        <el-row>
+        <el-row v-if="filteredList.length">
             <el-row>
                 <el-col :span="12">
                     <p> My Cart Items</p>
@@ -115,20 +122,21 @@
                             class="total-price">Ksh {{totalAmountInCart * 100 | priceWithComma}}</span></el-card>
                 </el-col>
             </el-row>
-            <el-col :span="22" v-for="product in itemsInCart" :key="product.id" :offset="product > 0 ? 1 : 1"
+            <el-col :span="22" v-for="product in filteredList" :key="product.id" :offset="product > 0 ? 1 : 1"
                     class="product">
                 <el-card :body-style="{ padding: '0px' }">
                     <!--:src="product.img"-->
                     <el-col :span="6">
                         <router-link :to="{name:'productsdetail_route', params:{id:product.product_id}}">
-                        <img class="img-product-dets" src="../../assets/laptop.jpg">
+                            <img class="img-product-dets" src="../../assets/laptop.jpg">
                         </router-link>
                     </el-col>
                     <el-col :span="18">
                         <div class="product-desc" style="padding: 14px;">
                             <div class="product-name-incart">
                                 <span class="product-price">{{product.quantity}}
-                                </span>&nbsp;{{product.name}} @ <span class="product-price"> {{product.price | toUssd}}</span>
+                                </span>&nbsp;{{product.name}} @ <span
+                                    class="product-price"> {{product.price | toUssd}}</span>
                             </div>
                             <div class="bottom clearfix">
                                 <time class="product-info">
@@ -140,10 +148,15 @@
                     </el-col>
                     <el-input-number :value="parseInt(product.quantity)" @change="handleChange(product,$event)" :min="1"
                                      :max="10"></el-input-number>
-                     <el-button type="danger pull-right" icon="el-icon-sold-out" @click="removeItem(product)"> Remove
+                    <el-button type="danger pull-right" icon="el-icon-sold-out" @click="removeItem(product)"> Remove
                     </el-button>
                 </el-card>
 
+            </el-col>
+        </el-row>
+        <el-row v-else>
+            <el-col>
+                <p>No products Found</p>
             </el-col>
         </el-row>
 

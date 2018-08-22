@@ -14,18 +14,24 @@
             return {
                 productsFiltered: [],
                 route_id: this.$route.params.id,
-                productsInStock : []
+                productsInStock: []
             }
         },
         computed: {
             ...mapGetters({
                 products: 'products',
                 cartItems: 'cartItems',
-                cartItemsNo: 'cartItemsNo'
-            })
+                cartItemsNo: 'cartItemsNo',
+                searchValue: 'searchValue'
+            }),
+            filteredList() {
+                return this.productsFiltered.filter(product => {
+                    return product.name.toLowerCase().includes(this.searchValue.toLowerCase())
+                })
+            }
         },
         methods: {
-            getProducts(){
+            getProducts() {
                 this.productsInStock = this.products
             },
             filterProducts() {
@@ -99,7 +105,7 @@
                 this.filterProducts();
                 this.$Progress.start(40)
             },
-            productsInStock:function() {
+            productsInStock: function () {
                 this.productsInStock = this.products
             }
 
@@ -107,7 +113,8 @@
         mounted() {
 
         },
-        created(){
+        created() {
+            this.$store.commit('UNSET_SEARCH_VALUE');
             this.getProducts()
             this.filterProducts();
             this.$Progress.start(40)
@@ -116,8 +123,8 @@
 </script>
 <template>
     <div>
-        <el-row v-if="productsFiltered.length">
-            <el-col :span="7" v-for="product in productsFiltered" :key="product.id" :offset="product > 0 ? 1 : 1"
+        <el-row v-if="filteredList.length">
+            <el-col :span="7" v-for="product in filteredList" :key="product.id" :offset="product > 0 ? 1 : 1"
                     class="product">
                 <el-card :body-style="{ padding: '0px' }">
                     <!--:src="product.img"-->
@@ -147,7 +154,7 @@
         </el-row>
         <el-row v-else>
             <el-col>
-                <p>Products in this category will be added soon</p>
+                <p>No products found</p>
             </el-col>
         </el-row>
 

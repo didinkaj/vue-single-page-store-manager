@@ -37,7 +37,9 @@
                 console.log(this.loggedinUser);
             },
             searchProduct() {
-                console.log(this.search)
+                console.log(this.search,'search')
+                this.$store.commit('SET_SEARCH_VALUE',this.search)
+
             },
             isLoggedIn() {
                 if (this.loggedinUser) {
@@ -82,7 +84,7 @@
                 text-color="#fff"
                 active-text-color="yellow">
             <el-menu-item index="1" class="is-active">
-                <router-link :to="{name:'productslist_route'}">VueJS Electronic Store</router-link>
+                <router-link :to="{name:'productslist_route'}">VueJS Electronic Store </router-link>
             </el-menu-item>
             <el-submenu index="2">
                 <template slot="title">Products</template>
@@ -98,7 +100,7 @@
             </el-submenu>
             <el-menu-item index="3" class="search">
                 <el-input suffix-icon="el-icon-search" placeholder="Search ..." v-model="search" class="find"
-                          v-on:keyup.enter="seamrchProduct">
+                       :onkeyup="searchProduct()">
                 </el-input>
             </el-menu-item>
             <router-link :to="{name:'userlogin_route'}" v-show="!isLoggedIn()">

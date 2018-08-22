@@ -20,8 +20,14 @@
             ...mapGetters({
                 products: 'products',
                 cartItems: 'cartItems',
-                cartItemsNo: 'cartItemsNo'
-            })
+                cartItemsNo: 'cartItemsNo',
+                searchValue: 'searchValue'
+            }),
+            filteredList() {
+                return this.products.filter(product => {
+                    return product.name.toLowerCase().includes(this.searchValue.toLowerCase())
+                })
+            }
         },
 
         watch: {
@@ -77,6 +83,7 @@
         },
 
         created() {
+            this.$store.commit('UNSET_SEARCH_VALUE')
             this.$Progress.start(40)
         }
     }
@@ -84,8 +91,8 @@
 <template>
     <div>
 
-        <el-row>
-            <el-col :span="7" v-for="(product, index) in products" :key="product.id" :offset="product > 0 ? 1 : 1"
+        <el-row v-if="filteredList.length">
+            <el-col :span="7" v-for="(product, index) in filteredList " :key="product.id" :offset="product > 0 ? 1 : 1"
                     class="product">
                 <el-card :body-style="{ padding: '0px' }">
                     <router-link :to="{name:'productsdetail_route', params:{id:product.id}}">
@@ -108,6 +115,11 @@
                     </el-button>
                 </el-card>
 
+            </el-col>
+        </el-row>
+        <el-row v-else>
+            <el-col>
+                <p>No products Found</p>
             </el-col>
         </el-row>
     </div>
